@@ -1,14 +1,15 @@
-
 import { Container } from "react-bootstrap";
 
-const Publicar = () => {
+
+
+const Historial = () => {
 
 
     return (
     <Container className="cart">
-        <h1>Aqui puedes Publicar tus productos</h1>
+        <h1>Historial de compra</h1>
     </Container>
     );
 };
 
-export default Publicar;
+export default Historial;

@@ -5,22 +5,24 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../assets/css/Navbar.css"
 
 function Navigation () {
+    const logo = "https://us.123rf.com/450wm/butenkov/butenkov2103/butenkov210300044/180573886-logotipo-vectorial-de-piezas-de-autom%C3%B3viles.jpg?ver=6"
 
     return (
         <Navbar expand="lg" className="navbar" fixed='top'>
+        <img src={logo} alt="logo" />
         <Container>
-            <Navbar.Brand href="#home">Autos Parts</Navbar.Brand>
+            <Navbar.Brand href="/">Autos Parts</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/">Market</Nav.Link>
             <Nav.Link href="/Ventas">Carrito</Nav.Link>
             <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Mis Publicaciones</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item href="/ventas">Mis Publicaciones</NavDropdown.Item>
+                <NavDropdown.Item href="/Historial">
                 Historial de Compra
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Publicar Artículo</NavDropdown.Item>
+                <NavDropdown.Item href="/Publicar">Publicar Artículo</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">
                 Configuraciones

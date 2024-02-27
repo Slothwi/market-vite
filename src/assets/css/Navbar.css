@@ -2,3 +2,8 @@
     background-color: rgb(54, 54, 131);
     border-radius: 10px;
 }
+
+img {
+    width: 50px;
+    margin-left: 10px;
+}

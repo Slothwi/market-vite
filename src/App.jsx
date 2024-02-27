@@ -11,6 +11,7 @@ import Profile from './Views/Profile'
 import Publicar from './Views/Publicar'
 import Registro from './Views/registro'
 import Ventas from './Views/Ventas'
+import Historial from './Views/Historial'
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path='Profile' element={ <Profile /> }/>
           <Route path='Publicar' element={ <Publicar /> }/>
           <Route path='Ventas' element={<Ventas />}/>
+          <Route path='Historial' element={<Historial />}/>
         </Routes>
       </BrowserRouter>
     </div>
