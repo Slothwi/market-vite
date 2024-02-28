@@ -27,10 +27,10 @@ const detailtRoutes = [
       { path: "/Historial", exact: true,  element: <Historial />}
     ],
   },
-  // { path: "/login",
-  //   exact: true,
-  //   element: <Login />,
-  // }
+  { path: "/Access",
+   exact: true,
+   element: <Access />,
+  }
 ];
 
 

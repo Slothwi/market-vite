@@ -9,13 +9,15 @@ function Navigation() {
         <Navbar expand="lg" className="navbar" fixed='top'>
         <Nav.Link href='/'><img src={logo} alt="logo" /></Nav.Link>
         <Container>
-            <Navbar.Brand href="/">Autos Parts</Navbar.Brand>
+            <Navbar.Brand className="text-white" href="/">Autos Parts</Navbar.Brand>
             
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-            <Nav.Link href="/"><Store />Market</Nav.Link>
-            <Nav.Link href="/Ventas"><ShoppingCart />Carrito</Nav.Link>
-            <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
+            <Nav.Link className="text-white" href="/"><Store />Market</Nav.Link>
+            <Nav.Link className="text-white" href="/Ventas"><ShoppingCart />Carrito</Nav.Link>
+            <NavDropdown title={
+                            <span className="text-white  my-auto">Mi Cuenta</span>} >
+      
                 <NavDropdown.Item href="/ventas">Mis Publicaciones</NavDropdown.Item>
                 <NavDropdown.Item href="/Historial">
                 Historial de Compra
