@@ -1,29 +1,27 @@
 :root {
-  --bar-width: 40px;
-  --bar-height: 8px;
-  --hamburger-gap: 6px;
-  --foreground: #3d3d7e;
-  --background: white;
-  --hamburger-margin: 22px;
-  --animation-timing: 200ms ease-in-out;
-  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+  --foreground: #19194b;
+  --background: rgb(255, 255, 255);
+
 }
 
 .sidebar {
-  transition: translate var(--animation-timing);
   padding: 0.5rem 1rem;
-  padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+  padding-top: 100px;
   background-color: var(--foreground);
   color: var(--background);
-  max-width: 30rem;
+  max-width: 14rem;
   min-height: 100vh;
   border-radius: 10px;
+
 }
 
-.profileSidebar{
-  margin-top: 300px; 
+.profile{
+  margin-top: 555px;
+  margin-bottom: 10px;
   align-items: center;
+  justify-content: center;
 }
+
 
 /* Clases Layout Principal */
 .navbar {
