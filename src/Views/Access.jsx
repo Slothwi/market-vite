@@ -1,12 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import "../assets/css/Access.css"
+import { CircleUser } from 'lucide-react';
 
 const Access = () => {
 
 
     return (
-    <div className="access">
-        <img className="access-img" src="https://t4.ftcdn.net/jpg/04/46/40/87/360_F_446408796_sO3c3ZIuWMgvXNbfXM4Hyqt7pLtGzKQo.jpg" alt="pikachu_img" />
+        <div className="access">
+        <CircleUser  />
         <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Correo Electronico</Form.Label>
@@ -23,8 +25,10 @@ const Access = () => {
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Confirmo que son mis datos" />
             </Form.Group>
+            <div className='buttons'>
             <Button variant="primary" type="submit" >Acceder</Button>
             <Button variant="primary" type="submit" >Registrarse</Button>
+            </div>
         </Form>
     </div>
     );

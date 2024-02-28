@@ -12,6 +12,7 @@ import Publicar from './Views/Publicar'
 import Registro from './Views/registro'
 import Ventas from './Views/Ventas'
 import Historial from './Views/Historial'
+import MyContext from './Context/Context'
 
 
 
@@ -20,23 +21,25 @@ function App() {
 
   return (
     <div className='App'>
-      <BrowserRouter>
-          <div className='App'>
-          <Nav/>
-          <Sidebar/>
-          </div>
-        <Routes>
-          <Route path='/' element={ <Home /> }/>
-          <Route path='Access' element={ <Access /> }/>
-          <Route path='Registro' element={ <Registro />}/>
-          <Route path='Cart' element={ <Cart /> }/>
-          <Route path='Favs' element={ <Favs /> }/>
-          <Route path='Profile' element={ <Profile /> }/>
-          <Route path='Publicar' element={ <Publicar /> }/>
-          <Route path='Ventas' element={<Ventas />}/>
-          <Route path='Historial' element={<Historial />}/>
-        </Routes>
-      </BrowserRouter>
+      <MyContext.Provider>
+        <BrowserRouter>
+            <div className='App'>
+            <Nav/>
+
+            </div>
+          <Routes>
+            <Route path='/' element={ <Home /> }/>
+            <Route path='Access' element={ <Access /> }/>
+            <Route path='Registro' element={ <Registro />}/>
+            <Route path='Cart' element={ <Cart /> }/>
+            <Route path='Favs' element={ <Favs /> }/>
+            <Route path='Profile' element={ <Profile /> }/>
+            <Route path='Publicar' element={ <Publicar /> }/>
+            <Route path='Ventas' element={<Ventas />}/>
+            <Route path='Historial' element={<Historial />}/>
+          </Routes>
+        </BrowserRouter>
+      </MyContext.Provider>
     </div>
   )
 }
