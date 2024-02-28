@@ -3,20 +3,21 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../assets/css/Navbar.css"
+import { Store,ShoppingCart,SquareUser } from 'lucide-react';
 
 function Navigation () {
     const logo = "https://us.123rf.com/450wm/butenkov/butenkov2103/butenkov210300044/180573886-logotipo-vectorial-de-piezas-de-autom%C3%B3viles.jpg?ver=6"
 
     return (
         <Navbar expand="lg" className="navbar" fixed='top'>
-        <img src={logo} alt="logo" />
+        <Nav.Link href='/'><img src={logo} alt="logo" /></Nav.Link>
         <Container>
             <Navbar.Brand href="/">Autos Parts</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-            <Nav.Link href="/">Market</Nav.Link>
-            <Nav.Link href="/Ventas">Carrito</Nav.Link>
+            <Nav.Link href="/"><Store />Market</Nav.Link>
+            <Nav.Link href="/Ventas"><ShoppingCart />Carrito</Nav.Link>
             <NavDropdown title="Mi Cuenta" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/ventas">Mis Publicaciones</NavDropdown.Item>
                 <NavDropdown.Item href="/Historial">
@@ -36,3 +37,4 @@ function Navigation () {
 }
 
 export default Navigation;
+

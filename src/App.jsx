@@ -21,8 +21,10 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
+          <div className='App'>
           <Nav/>
           <Sidebar/>
+          </div>
         <Routes>
           <Route path='/' element={ <Home /> }/>
           <Route path='Access' element={ <Access /> }/>
