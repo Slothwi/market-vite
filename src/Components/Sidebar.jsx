@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { SquareUser,Home,Star,ArrowUpFromLine,BookText } from "lucide-react";
+import { Home,Star,ArrowUpFromLine,BookText } from "lucide-react";
 
 
 export default function Sidebar() {
@@ -15,8 +15,7 @@ export default function Sidebar() {
                     <div className="container"><NavLink to="/ventas"><BookText />Mis Publicaciones</NavLink></div>
                     <hr />
                     <div className="container"><NavLink to="/Publicar"><ArrowUpFromLine />Publicar Producto</NavLink></div>
-                    <hr />
-                    <div className="container"><NavLink to="/Profile"><SquareUser/> Mi Perfil</NavLink></div>
+
                 </nav>
             </aside>
         </>
