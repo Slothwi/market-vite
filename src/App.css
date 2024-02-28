@@ -2,14 +2,12 @@
   --bar-width: 40px;
   --bar-height: 8px;
   --hamburger-gap: 6px;
-  --foreground: #19194b;
+  --foreground: #3d3d7e;
   --background: white;
   --hamburger-margin: 22px;
   --animation-timing: 200ms ease-in-out;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 }
-
-
 
 .sidebar {
   transition: translate var(--animation-timing);
@@ -17,24 +15,32 @@
   padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
   background-color: var(--foreground);
   color: var(--background);
-  max-width: 10rem;
+  max-width: 30rem;
   min-height: 100vh;
   border-radius: 10px;
 }
 
-
-.profile{
-  margin-top: 615px;
-  margin-bottom: 10px;
+.profileSidebar{
+  margin-top: 300px; 
   align-items: center;
-  justify-content: center;
 }
 
--- BARS
-
+/* Clases Layout Principal */
 .navbar {
   background-color: var(--foreground);
   border-radius: 10px;
+  color: white;
 }
 
+.contentArea {
+  flex-grow: 1;
+}
 
+.pageWrapper {
+  min-height: 100vh;
+}
+
+.wrapper {
+  max-width: 3840px;
+  margin: 100px auto;
+}

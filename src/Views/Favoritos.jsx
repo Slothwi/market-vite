@@ -1,15 +1,12 @@
-import { Container } from "react-bootstrap";
-
-
+import { Container, Row } from "react-bootstrap";
 
 const Favs = () => {
-
-
     return (
-    <Container className="cart">
-        <h1>Tus Productos Favoritos</h1>
-
-    </Container>
+        <Container  >
+            <Row className='mt-4 mx-auto'>
+                <h1>Tus Productos Favoritos</h1>
+            </Row>
+        </Container>
     );
 };
 
