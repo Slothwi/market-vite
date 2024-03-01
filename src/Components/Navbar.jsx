@@ -24,7 +24,7 @@ function Navigation() {
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/Publicar">Publicar Artículo</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4"><SquareUser/> Mi Perfil</NavDropdown.Item>
+                <NavDropdown.Item href="/Config"><SquareUser/> Mi Perfil</NavDropdown.Item>
             </NavDropdown>
         </Nav>
     </Navbar.Collapse>

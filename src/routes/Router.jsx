@@ -8,6 +8,7 @@ import Registro from '../Views/registro'
 import Ventas from '../Views/Ventas'
 import Historial from '../Views/Historial'
 import MainPage from '../Components/MainPage'
+import Config from '../Views/Config'
 
 /*****Routes******/
 const detailtRoutes = [
@@ -24,7 +25,8 @@ const detailtRoutes = [
       { path: "/Profile", exact: true, element: <Profile /> },
       { path: "/Publicar", exact: true,  element: <Publicar />},
       { path: "/Ventas", exact: true, element: <Ventas /> },
-      { path: "/Historial", exact: true,  element: <Historial />}
+      { path: "/Historial", exact: true,  element: <Historial />},
+      { path: "/Config", exact: true,  element: <Config />}
     ],
   },
   { path: "/Access",
