@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "../assets/css/Access.css"
 import { CircleUser } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
 const Access = () => {
 
@@ -27,7 +28,7 @@ const Access = () => {
             </Form.Group>
             <div className='buttons'>
             <Button variant="outline-light" type="submit" >Acceder</Button>
-            <Button variant="outline-light" type="submit" >Registrarse</Button>
+            <NavLink to="/Registro"><Button variant="outline-light" type="submit" >Registrarse</Button></NavLink>
             </div>
         </Form>
     </div>
