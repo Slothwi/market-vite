@@ -14,10 +14,9 @@ function Navigation() {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
             <Nav.Link className="text-white" href="/"><Store />Market</Nav.Link>
-            <Nav.Link className="text-white" href="/Ventas"><ShoppingCart />Carrito</Nav.Link>
+            <Nav.Link className="text-white" href="/CarritoCompras"><ShoppingCart />Carrito</Nav.Link>
             <NavDropdown title={
-                            <span className="text-white  my-auto">Mi Cuenta</span>} >
-      
+                            <span className="text-white  my-auto">Mi Cuenta</span>} >    
                 <NavDropdown.Item href="/ventas">Mis Publicaciones</NavDropdown.Item>
                 <NavDropdown.Item href="/Historial">
                 Historial de Compra

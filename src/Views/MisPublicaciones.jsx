@@ -1,8 +1,8 @@
-import { Container, Row, Col, FloatingLabel, Form, Card } from "react-bootstrap";
-import { useEffect, useState } from 'react';
+import { Container, Row, Col, Card } from "react-bootstrap";
 import CardProducto from '../Components/CardProducto'
+import { useEffect, useState } from 'react';
 
-const arrayFiltrado = [
+const listPublicaciones = [
     {
         id: "1",
         nombre: "Neumatico",
@@ -27,52 +27,28 @@ const arrayFiltrado = [
     }
 ]
 
-const Home = () => {
-    const [arrayProductos, setArrayProductos] = useState([]);
-    const [name, setName] = useState("");
-
-    // Al ingresar patron de busqueda va a consultar
-    const buscarProductos = (e) => {
-        setName(e.target.value)
-
-        const listaFiltrada = arrayFiltrado.filter(obj => obj.nombre.toLowerCase().includes(name))
-        setArrayProductos(listaFiltrada)
-    }
+const MisPublicaciones = () => {
+    const [arrayPublicaciones, setArrayPublicaciones] = useState([]);
 
     useEffect(() => {
-        setArrayProductos(arrayFiltrado);
+        setArrayPublicaciones(listPublicaciones);
     }, []);
 
     return (
         <Container>
             <Row className="d-flex align-items-center">
                 <Col lg={3} md={3} sm={12}>
-                    <h3>Market Place</h3>
-                </Col>
-                <Col lg={6} md={6} sm={12}>
-                    <FloatingLabel
-                        controlId="IdBusqueda"
-                        label="Busqueda por Nombre:"  >
-                        <Form.Control
-                            type="text"
-                            value={name}
-                            size="sm"
-                            onChange={buscarProductos}
-                        />
-                    </FloatingLabel>
-
+                    <h3>Mis Publicaciones</h3>
                 </Col>
             </Row>
-
             <Row className="p-2">
                 <Card >
                     <Card.Header> <b>Productos </b></Card.Header>
-
                     <Row className='mt-2'>
-                        {arrayProductos.length > 0
-                            ? arrayProductos.map((item) => (
+                        {arrayPublicaciones.length > 0
+                            ? arrayPublicaciones.map((item) => (
                                 <Col key={item.id} className='ms-2'>
-                                    <CardProducto item={item} accion="Agregar"/>
+                                    <CardProducto item={item} accion="Modificar"/>
                                 </Col>
                             ))
                             : <div>No hay datos</div>}
@@ -83,4 +59,5 @@ const Home = () => {
         </Container>
     );
 };
-export default Home
+
+export default MisPublicaciones;

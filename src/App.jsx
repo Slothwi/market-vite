@@ -1,18 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
-import Themeroutes from "./routes/Router";
+import detailtRoutes from "./routes/Router";
 import { useRoutes } from "react-router-dom";
-import MyContext from './Context/Context'
+import ProductProvider from './Context/ProductContext'
 
 function App() {
-  const routing = useRoutes(Themeroutes);
-  
+  const routing = useRoutes(detailtRoutes);
+
   return (
     <div>
-      <MyContext.Provider>
-      {routing}
-      </MyContext.Provider>
+      <ProductProvider>
+        {routing}
+      </ProductProvider>
     </div>
   )
 }

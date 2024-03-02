@@ -8,19 +8,17 @@ const MainPage = () => {
   return (
     <main>
       <Nav />
-      <div className="pageWrapper d-lg-flex">
-        <aside className="sidebarArea shadow" id="sidebarArea">
+      <div className="pageWrapper d-flex">
+        <aside className="sidebarArea">
           <Sidebar />
         </aside>
         <div className="contentArea">
-          <Container className="ps-4 pe-4 wrapper" fluid>
+          <Container className="ps-4 wrapper" fluid>
             <Outlet />
           </Container>
         </div>
       </div>
     </main>
-
-
   );
 };
 

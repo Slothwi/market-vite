@@ -1,27 +1,3 @@
-:root {
-  --foreground: #19194b;
-  --background: rgb(255, 255, 255);
-
-}
-
-.sidebar {
-  padding: 0.5rem 1rem;
-  padding-top: 100px;
-  background-color: var(--foreground);
-  color: var(--background);
-  max-width: 14rem;
-  min-height: 100vh;
-  border-radius: 10px;
-
-}
-
-.profile{
-  margin-top: 555px;
-  margin-bottom: 10px;
-  align-items: center;
-  justify-content: center;
-}
-
 
 /* Clases Layout Principal */
 .navbar {
@@ -41,4 +17,19 @@
 .wrapper {
   max-width: 3840px;
   margin: 100px auto;
+}
+
+.sidebarArea {
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.sidebar {
+  padding: 0.5rem 1rem;
+  padding-top: 100px;
+  background-color: var(--foreground);
+  color: var(--background);
+  min-height: 100vh;
+  border-radius: 10px;
+
 }
