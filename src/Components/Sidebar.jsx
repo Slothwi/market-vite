@@ -6,13 +6,13 @@ export default function Sidebar() {
     return (
         <>
             <aside className="sidebar">
-                <NavLink to="/"><Home />Home</NavLink>
+                <NavLink to="home"><Home />Home</NavLink>
                 <hr />
-                <NavLink to="/Favs"><Star />Favoritos</NavLink>
+                <NavLink to="favs"><Star />Favoritos</NavLink>
                 <hr />
-                <NavLink to="/ventas"><BookText />Mis Publicaciones</NavLink>
+                <NavLink to="ventas"><BookText />Mis Publicaciones</NavLink>
                 <hr />
-                <NavLink to="/Publicar"><ArrowUpFromLine />Publicar Producto</NavLink>
+                <NavLink to="publicar"><ArrowUpFromLine />Publicar Producto</NavLink>
             </aside>
         </>
     )

@@ -7,12 +7,12 @@ import Nav from './Navbar'
 const MainPage = () => {
   return (
     <main>
-      <Nav />
       <div className="pageWrapper d-flex">
         <aside className="sidebarArea">
           <Sidebar />
         </aside>
         <div className="contentArea">
+          <Nav />
           <Container className="ps-4 wrapper" fluid>
             <Outlet />
           </Container>
