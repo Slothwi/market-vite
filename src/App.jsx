@@ -12,6 +12,7 @@ import Ventas from '../src/Views/MisPublicaciones'
 import Historial from '../src/Views/Historial'
 import MainPage from '../src/Components/MainPage'
 import Config from '../src/Views/Config'
+import NotFound from "../src/Views/NotFound";
 
 import { Routes, Route } from "react-router-dom";
 import ProductProvider from './Context/ProductContext'
@@ -42,6 +43,8 @@ function App() {
             <Route path="config" element={<Config />} />
           </Route>
           <Route path="/registro" element={<Registro />} />
+          <Route path="*" element={<NotFound />}
+        />
         </Routes>
       </ProductProvider>
     </div>

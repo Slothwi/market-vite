@@ -1,9 +1,9 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import "../assets/css/Access.css"
 import { CircleUser } from 'lucide-react';
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
+import GoogleAuth from '../Components/GoogleAuth';
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const initialForm = { email: '', password: '' }
@@ -77,11 +77,7 @@ const Access = () => {
                     </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Confirmo que son mis datos" />
-                </Form.Group>
-
-                <div className='buttons'>
+                <Form.Group className="mb-3 buttons"  >
                     <Button
                         variant="outline-light"
                         type="submit"
@@ -90,7 +86,13 @@ const Access = () => {
                     <NavLink to="/registro">
                         <Button variant="outline-light" type="submit" >Registrarse</Button>
                     </NavLink>
-                </div>
+                </Form.Group>
+
+                <Row>
+                    <Col lg={12} className="d-flex justify-content-center">
+                        <GoogleAuth></GoogleAuth>
+                    </Col>
+                </Row>
             </Form>
         </div>
     );

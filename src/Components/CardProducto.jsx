@@ -1,5 +1,7 @@
 import { Card, Button, Row, Col } from 'react-bootstrap'
 import { Save } from "lucide-react";
+import IconHeart from "./IconHeart";
+// import { Heart } from 'lucide-react';
 
 const CardProducto = ({ item, accion }) => {
 
@@ -8,7 +10,10 @@ const CardProducto = ({ item, accion }) => {
       <Card style={{ width: '20rem' }} >
         <Card.Img variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
         <Card.Body>
-          <Card.Title className='text-capitalize text-center'> <b>{item.nombre} </b>  </Card.Title>
+          <Card.Title className='text-capitalize text-center d-flex justify-content-between'>
+            <b>{item.nombre} </b>
+            {accion == 'Favorito' ? <IconHeart /> : <span></span>}
+          </Card.Title>
           <hr />
           <p><b>{item.descripcion} </b></p>
           <Row>
@@ -30,8 +35,9 @@ const CardProducto = ({ item, accion }) => {
             <Col className="d-flex justify-content-end">
               {accion == 'Modificar' ?
                 <Button className='p-1 m-2 ' variant='outline-primary' size='md' > <Save /> Modificar</Button>
-                :
-                <Button className='p-1 m-2 ' variant='outline-primary' size='md' > <Save /> Añadir </Button>}
+                : accion == 'Agregar' ?
+                  <Button className='p-1 m-2 ' variant='outline-primary' size='md' > <Save /> Añadir </Button>
+                  : <span></span>}
             </Col>
 
           </Row>
