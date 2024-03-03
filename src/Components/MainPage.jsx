@@ -18,6 +18,8 @@ const MainPage = () => {
           </Container>
         </div>
       </div>
+      <div className="footer">
+        <p className="mt-3">Derechos reservados </p></div>
     </main>
   );
 };

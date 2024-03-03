@@ -2,7 +2,6 @@
 /* Clases Layout Principal */
 .navbar {
   background-color: var(--foreground);
-  border-radius: 10px;
   color: white;
 }
 
@@ -30,6 +29,16 @@
   background-color: var(--foreground);
   color: var(--background);
   min-height: 100vh;
-  border-radius: 10px;
+  height:100%;
+}
 
+.footer{
+  color: white;
+  background: var(--foreground) ;
+  opacity: 0.94;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font: normal normal 300 Raleway;
 }
