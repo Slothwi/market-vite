@@ -51,12 +51,18 @@ const ProductProvider = ({ children }) => {
     return total.toLocaleString()
   }
 
+  const quantityProduct = () => {
+    const count = (listShoppingCart.reduce((accumulator, prod) => accumulator + prod.cantidad, 0))
+    return count 
+  }
+
+
   useEffect(() => {
     searchProducts()
   }, [])
 
   return (
-    <ProductContext.Provider value={{ listShoppingCart, setListShoppingCart, addProductShopping, removeProductShopping, calculateAmount }}>
+    <ProductContext.Provider value={{ listShoppingCart, setListShoppingCart, addProductShopping, removeProductShopping, calculateAmount, quantityProduct }}>
       {children}
     </ProductContext.Provider>
   )

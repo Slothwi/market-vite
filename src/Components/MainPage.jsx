@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Sidebar from './Sidebar'
-import Nav from './Navbar'
+import Navbar from './Navbar'
 
 
 const MainPage = () => {
@@ -12,7 +12,7 @@ const MainPage = () => {
           <Sidebar />
         </aside>
         <div className="contentArea">
-          <Nav />
+          <Navbar />
           <Container className="ps-4 wrapper" fluid>
             <Outlet />
           </Container>

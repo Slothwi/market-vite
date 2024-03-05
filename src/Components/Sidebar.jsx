@@ -1,8 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { Home, Star, ArrowUpFromLine, BookText } from "lucide-react";
 
-export default function Sidebar() {
-
+const Sidebar = () => {
     return (
         <>
             <aside className="sidebar">
@@ -10,10 +9,11 @@ export default function Sidebar() {
                 <hr />
                 <NavLink to="favs"><Star />Favoritos</NavLink>
                 <hr />
-                <NavLink to="ventas"><BookText />Mis Publicaciones</NavLink>
+                <NavLink to="mypublications"><BookText />Mis Publicaciones</NavLink>
                 <hr />
-                <NavLink to="publicar"><ArrowUpFromLine />Publicar Producto</NavLink>
+                <NavLink to="publish"><ArrowUpFromLine />Publicar Producto</NavLink>
             </aside>
         </>
     )
 }
+export default Sidebar;

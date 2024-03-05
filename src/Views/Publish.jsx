@@ -1,8 +1,7 @@
 
 import { Container } from "react-bootstrap";
 
-const Publicar = () => {
-
+const Publish = () => {
 
     return (
     <Container className="cart">
@@ -11,4 +10,4 @@ const Publicar = () => {
     );
 };
 
-export default Publicar;
+export default Publish;

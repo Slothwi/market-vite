@@ -4,8 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import "../assets/css/Config.css"
 
-function Config() {
-    return (
+const Config = () => {
+     return (
     <Form className='access text-light'>
         <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridEmail">

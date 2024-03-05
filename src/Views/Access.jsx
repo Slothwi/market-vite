@@ -83,7 +83,7 @@ const Access = () => {
                         type="submit"
                         onClick={handleSubmit} >Acceder
                     </Button>
-                    <NavLink to="/registro">
+                    <NavLink to="/register">
                         <Button variant="outline-light" type="submit" >Registrarse</Button>
                     </NavLink>
                 </Form.Group>

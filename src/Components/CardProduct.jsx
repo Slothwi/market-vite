@@ -3,13 +3,13 @@ import { Save } from "lucide-react";
 import IconHeart from "./IconHeart";
 // import { Heart } from 'lucide-react';
 
-const CardProducto = ({ item, accion }) => {
+const CardProduct = ({ item, accion }) => {
 
   return (
     <div>
-      <Card style={{ width: '20rem' }} >
-        <Card.Img variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
-        <Card.Body>
+      <Card style={{ width: '20rem' }} className='mt-2'>
+        <Card.Img className='mt-3' variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
+        <Card.Body >
           <Card.Title className='text-capitalize text-center d-flex justify-content-between'>
             <b>{item.nombre} </b>
             {accion == 'Favorito' ? <IconHeart /> : <span></span>}
@@ -47,4 +47,4 @@ const CardProducto = ({ item, accion }) => {
   )
 }
 
-export default CardProducto
+export default CardProduct

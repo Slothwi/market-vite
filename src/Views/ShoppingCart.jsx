@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { PlusCircle, MinusCircle, CircleDollarSign, ShoppingBasket } from "lucide-react";
 
-const CarritoCompras = () => {
+const ShoppingCart = () => {
     const { listShoppingCart, addProductShopping, removeProductShopping, calculateAmount } = useContext(ProductContext)
 
     const navigate = useNavigate()
@@ -85,4 +85,4 @@ const CarritoCompras = () => {
     );
 };
 
-export default CarritoCompras;
+export default ShoppingCart;

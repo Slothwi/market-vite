@@ -2,8 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import "../assets/css/Access.css"
 
-const Registro = () => {
-
+const Register = () => {
 
     return (
     <div className="access text-white">
@@ -38,4 +37,4 @@ const Registro = () => {
     );
 };
 
-export default Registro;
+export default Register;

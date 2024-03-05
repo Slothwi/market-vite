@@ -1,9 +1,7 @@
 import { Container } from "react-bootstrap";
 
 
-
 const Historial = () => {
-
 
     return (
     <Container className="cart">

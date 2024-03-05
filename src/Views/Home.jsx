@@ -1,6 +1,7 @@
-import { Container, Row, Col, FloatingLabel, Form, Card } from "react-bootstrap";
+import { Container, Row, Col, Form, Card, InputGroup } from "react-bootstrap";
 import { useEffect, useState } from 'react';
-import CardProducto from '../Components/CardProducto'
+import CardProduct from '../Components/CardProduct'
+import { Search } from 'lucide-react';
 
 const arrayFiltrado = [
     {
@@ -24,6 +25,17 @@ const arrayFiltrado = [
         stock: 3,
         nuevousado: "usado",
         img: "https://www.autofacil.es/wp-content/uploads/2021/05/alternador2.jpg"
+    },
+    {
+        id: "3",
+        nombre: "Tornillo",
+        descripcion: "Tornillo 3 pines (inyeccion delphi)",
+        marca: "Unipoint",
+        sku: "34343",
+        precio: 25600,
+        stock: 1,
+        nuevousado: "nuevo",
+        img: "https://www.autofacil.es/wp-content/uploads/2021/05/alternador2.jpg"
     }
 ]
 
@@ -45,22 +57,19 @@ const Home = () => {
 
     return (
         <Container>
-            <Row className="d-flex align-items-center">
-                <Col lg={3} md={3} sm={12}>
-                    <h3>Market Place</h3>
-                </Col>
-                <Col lg={6} md={6} sm={12}>
-                    <FloatingLabel
-                        controlId="IdBusqueda"
-                        label="Busqueda por Nombre:"  >
+            <Row  >
+                <Col lg={7} md={6} sm={12} >
+                    <InputGroup>
+                        <InputGroup.Text> <Search /></InputGroup.Text>
                         <Form.Control
                             type="text"
                             value={name}
                             size="sm"
+                            aria-describedby="passwordHelpBlock"
                             onChange={buscarProductos}
+                            placeholder="Busqueda de producto"
                         />
-                    </FloatingLabel>
-
+                    </InputGroup>
                 </Col>
             </Row>
 
@@ -72,7 +81,7 @@ const Home = () => {
                         {arrayProductos.length > 0
                             ? arrayProductos.map((item) => (
                                 <Col key={item.id} className='ms-2'>
-                                    <CardProducto item={item} accion="Agregar"/>
+                                    <CardProduct item={item} accion="Agregar" />
                                 </Col>
                             ))
                             : <div>No hay datos</div>}
