@@ -5,13 +5,15 @@ import Row from 'react-bootstrap/Row';
 import "../assets/css/Config.css"
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import Carrousel from '../Components/Carrousel';
 
 
 const Config = () => {
    
     
     return (
-        <Container className="access">
+        <>
+            <Container className="access">
         <h2 className="text-white">Modifica tus Datos.</h2>
         <Form className="text-white">
             <Row>
@@ -45,6 +47,10 @@ const Config = () => {
         </div>
     </Form>
     </Container>
+    <Container>
+        <Carrousel />
+    </Container>
+        </>
     );
 }
 

@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from "react-router-dom";
+import Carrousel from "../Components/Carrousel";
 
 
 
@@ -11,7 +12,8 @@ const Profile = () => {
 
 
     return (
-    <Container className="access">
+    <>
+        <Container className="access">
         <h2 className="text-white">Aqui Puedes Ver Y Modificar tus Datos.</h2>
         <Form className="text-white">
             <Row>
@@ -47,6 +49,10 @@ const Profile = () => {
         </div>
     </Form>
     </Container>
+    <Container>
+        <Carrousel />
+    </Container>
+    </>
     );
 };
 
