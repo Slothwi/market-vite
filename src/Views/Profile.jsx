@@ -35,6 +35,11 @@ const Profile = () => {
             <Form.Label>Tu Contraseña:</Form.Label>
             <Form.Control type="password" placeholder="Contraseña" disabled/>
         </Form.Group>
+        <hr />
+        <Form.Group className="mb-3" controlId="formBasicImg">
+            <Form.Label>Tu Imagen:</Form.Label>
+            <Form.Control type="Img" placeholder="URL de Imagen" disabled/>
+        </Form.Group>
         <div className="buttons">
             <NavLink to="/MainPage/home">
                 <Button variant="outline-light" type="submit">

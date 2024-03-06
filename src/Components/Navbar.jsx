@@ -31,7 +31,7 @@ const Navigation = () => {
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/mainpage/publish">Publicar Artículo</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/mainpage/config"><SquareUser /> Mi Perfil</NavDropdown.Item>
+                            <NavDropdown.Item href="/mainpage/profile"><SquareUser /> Mi Perfil</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
