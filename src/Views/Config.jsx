@@ -17,23 +17,28 @@ const Config = () => {
         <h2 className="text-white">Modifica tus Datos.</h2>
         <Form className="text-white">
             <Row>
-            <Form.Label> Nombre y apellido:</Form.Label>
+            <Form.Label>Cambia tú Nombre y apellido:</Form.Label>
                 <Col>
-                    <Form.Control placeholder="Nombre" />
+                    <Form.Control placeholder="Nuevo Nombre" />
                 </Col>
                 <Col>
-                    <Form.Control placeholder="Apellido" />
+                    <Form.Control placeholder="Nuevo Apellido" />
                 </Col>
             </Row>
             <hr />
         <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Tu Correo:</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Label>Cambia Tú Correo:</Form.Label>
+            <Form.Control type="email" placeholder="Nuevo Correo" />
         </Form.Group>
             <hr />
         <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Tu Contraseña:</Form.Label>
-            <Form.Control type="password" placeholder="Contraseña" />
+            <Form.Label>Cambia Tú Contraseña:</Form.Label>
+            <Form.Control type="password" placeholder="Nueva Contraseña" />
+        </Form.Group>
+        <hr />
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Cambia tu imagen</Form.Label>
+            <Form.Control type="password" placeholder="URL de imagen" />
         </Form.Group>
         <div className="buttons">
             <NavLink to="/MainPage/Profile">
