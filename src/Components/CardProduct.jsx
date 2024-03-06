@@ -6,39 +6,43 @@ const CardProduct = ({ item, accion }) => {
 
   return (
     <div>
-      <Card style={{ width: '20rem' }} className='mt-2'>
+      <Card style={{ width: '20rem' }} className='mt-2' key={item.id}>
         <div className='d-flex justify-content-between'>
           <Card.Img className='mt-3' variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
           <div className='d-flex flex-column'>
-            <span><Badge bg="secondary">Envio gratis</Badge> </span>
-            <span><Badge bg="primary">LLega mañana</Badge> </span>
+            {item.precio > 10000 ?
+              <span><Badge bg="secondary">Envio gratis</Badge> </span>
+              :
+              <span><Badge bg="primary">LLega mañana</Badge> </span>}
           </div>
         </div>
+
         <Card.Body >
-          <Card.Title className='text-capitalize text-center d-flex justify-content-between'>
+          <Card.Title className='m-0 text-capitalize text-center d-flex justify-content-between'>
             <b>{item.nombre} </b>
             {accion == 'Favorito' ? <IconHeart /> : <span></span>}
           </Card.Title>
+
+          <div className='m-0'><small>{item.marca}</small></div>
+
           <hr />
           <p><b>{item.descripcion} </b></p>
-          <Row>
-            <Col >Marca: {item.marca}</Col>
-          </Row>
+
           <Row>
             <Col >SKU: {item.SKU}</Col>
           </Row>
           <Row>
-            <Col >Precio: {item.precio}</Col>
-          </Row>
-          <Row>
             <Col >Stock: {item.stock}</Col>
           </Row>
-
+          <Row>
+            <Col ><strong> ${item.precio.toLocaleString()}</strong></Col>
+          </Row>
+          
           <Row>
             <Col className="d-flex justify-content-between align-items-center mt-1">
-              <span>
-              {item.nuevousado ? <Badge bg="danger">Usado</Badge> : <Badge bg="success">Nuevo</Badge>}
-              </span>
+              <span><small>
+                {item.nuevousado ? <p><mark>Usado</mark></p> : <p><mark>Nuevo</mark></p>}
+                </small></span>
               {accion == 'Modificar' ?
                 <Button className='p-1 m-2 ' variant='outline-primary' size='md' > <Save /> Modificar</Button>
                 : accion == 'Agregar' ?
