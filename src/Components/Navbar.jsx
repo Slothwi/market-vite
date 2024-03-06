@@ -3,6 +3,7 @@ import "../assets/css/Navbar.css"
 import { Store, ShoppingCart, SquareUser } from 'lucide-react';
 import { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContext';
+import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
     const { quantityProduct } = useContext(ProductContext)
@@ -12,17 +13,14 @@ const Navigation = () => {
     return (
         <Navbar expand="lg" className="navbar" fixed='top'   variant="dark">
             <Container className='m-0'>
-         
-                <Nav.Link href='/mainpage/home'><img src={logo} alt="logo" /></Nav.Link>
+                <NavLink href='/mainpage/home'><img src={logo} alt="logo" /></NavLink>
                 <Navbar.Brand className="text-white ms-2" href="/mainpage/home">Autos Parts</Navbar.Brand>
-                 
                 <Navbar.Toggle />
-   
                 <Navbar.Collapse className="justify-content-between ms-5" >
                     <Nav >
-                        <Nav.Link className="text-white" href="/mainpage/home"><Store />Market</Nav.Link>
-                        <Nav.Link className="text-white" href="/mainpage/shopping-cart"><ShoppingCart />Carrito <Badge bg="secondary">{quantityProduct()}</Badge>
-                        </Nav.Link>
+                        <NavLink className="text-white p-2" href="/mainpage/home"><Store />Market</NavLink>
+                        <NavLink className="text-white p-2" href="/mainpage/shopping-cart"><ShoppingCart />Carrito <Badge bg="secondary">{quantityProduct()}</Badge>
+                        </NavLink>
                     </Nav >
                     <Nav >
                     <NavDropdown title={

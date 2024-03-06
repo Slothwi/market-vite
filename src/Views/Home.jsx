@@ -48,23 +48,25 @@ const Home = () => {
     // Al ingresar patron de busqueda va a consultar
     const buscarProductos = (e) => {
         setName(e.target.value)
-
         const listaFiltrada = arrayFiltrado.filter(obj => obj.nombre.toLowerCase().includes(name))
         setArrayProductos(listaFiltrada)
     }
 
-    const getProductsService = async () => {
-        return await getProducts()
-    }
+    const getProd = async () => {
+        const data = await getProducts()
+        console.log('data', data.results)
+        setArrayProductos(data.results)
+    };
+
 
     useEffect(() => {
-        setArrayProductos(arrayFiltrado);
-        getProductsService()
+        getProd()
     }, []);
 
     return (
         <Container>
-            <Row className="p-2" >
+            {/* buscador de productos */}
+            <Row className="" >
                 <Col lg={7} md={6} sm={12} >
                     <InputGroup>
                         <InputGroup.Text> <Search /></InputGroup.Text>
@@ -79,9 +81,11 @@ const Home = () => {
                     </InputGroup>
                 </Col>
             </Row>
+            {/* carrusel*/}
             <Row>
-            <Carrousel />
+                <Carrousel />
             </Row>
+            {/* despliega los productos */}
             <Row className="p-2">
                 <Card >
                     <Card.Header> <b>Productos </b></Card.Header>

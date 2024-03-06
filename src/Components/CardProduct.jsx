@@ -1,7 +1,6 @@
 import { Card, Button, Row, Col, Badge } from 'react-bootstrap'
 import { Save } from "lucide-react";
 import IconHeart from "./IconHeart";
-// import { Heart } from 'lucide-react';
 
 const CardProduct = ({ item, accion }) => {
 
@@ -11,7 +10,7 @@ const CardProduct = ({ item, accion }) => {
         <div className='d-flex justify-content-between'>
           <Card.Img className='mt-3' variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
           <div className='d-flex flex-column'>
-            <span><Badge bg="success">Envio gratis</Badge> </span>
+            <span><Badge bg="secondary">Envio gratis</Badge> </span>
             <span><Badge bg="primary">LLega mañana</Badge> </span>
           </div>
         </div>
@@ -26,7 +25,7 @@ const CardProduct = ({ item, accion }) => {
             <Col >Marca: {item.marca}</Col>
           </Row>
           <Row>
-            <Col >SKU: {item.sku}</Col>
+            <Col >SKU: {item.SKU}</Col>
           </Row>
           <Row>
             <Col >Precio: {item.precio}</Col>
@@ -34,18 +33,18 @@ const CardProduct = ({ item, accion }) => {
           <Row>
             <Col >Stock: {item.stock}</Col>
           </Row>
+
           <Row>
-            <Col >Estado: {item.nuevousado}</Col>
-          </Row>
-          <Row>
-            <Col className="d-flex justify-content-end">
+            <Col className="d-flex justify-content-between align-items-center mt-1">
+              <span>
+              {item.nuevousado ? <Badge bg="danger">Usado</Badge> : <Badge bg="success">Nuevo</Badge>}
+              </span>
               {accion == 'Modificar' ?
                 <Button className='p-1 m-2 ' variant='outline-primary' size='md' > <Save /> Modificar</Button>
                 : accion == 'Agregar' ?
                   <Button className='p-1 m-2 ' variant='outline-primary' size='md' > <Save /> Añadir </Button>
                   : <span></span>}
             </Col>
-
           </Row>
         </Card.Body>
       </Card>
