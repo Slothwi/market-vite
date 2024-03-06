@@ -1,4 +1,4 @@
-import { Card, Button, Row, Col } from 'react-bootstrap'
+import { Card, Button, Row, Col, Badge } from 'react-bootstrap'
 import { Save } from "lucide-react";
 import IconHeart from "./IconHeart";
 // import { Heart } from 'lucide-react';
@@ -8,7 +8,13 @@ const CardProduct = ({ item, accion }) => {
   return (
     <div>
       <Card style={{ width: '20rem' }} className='mt-2'>
-        <Card.Img className='mt-3' variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
+        <div className='d-flex justify-content-between'>
+          <Card.Img className='mt-3' variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
+          <div className='d-flex flex-column'>
+            <span><Badge bg="success">Envio gratis</Badge> </span>
+            <span><Badge bg="primary">LLega mañana</Badge> </span>
+          </div>
+        </div>
         <Card.Body >
           <Card.Title className='text-capitalize text-center d-flex justify-content-between'>
             <b>{item.nombre} </b>

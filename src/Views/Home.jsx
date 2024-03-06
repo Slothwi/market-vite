@@ -2,6 +2,8 @@ import { Container, Row, Col, Form, Card, InputGroup } from "react-bootstrap";
 import { useEffect, useState } from 'react';
 import CardProduct from '../Components/CardProduct'
 import { Search } from 'lucide-react';
+import { getProducts } from "../Services/ProductServices";
+import Carrousel from "../Components/Carrousel";
 
 const arrayFiltrado = [
     {
@@ -51,13 +53,18 @@ const Home = () => {
         setArrayProductos(listaFiltrada)
     }
 
+    const getProductsService = async () => {
+        return await getProducts()
+    }
+
     useEffect(() => {
         setArrayProductos(arrayFiltrado);
+        getProductsService()
     }, []);
 
     return (
         <Container>
-            <Row  >
+            <Row className="p-2" >
                 <Col lg={7} md={6} sm={12} >
                     <InputGroup>
                         <InputGroup.Text> <Search /></InputGroup.Text>
@@ -72,11 +79,12 @@ const Home = () => {
                     </InputGroup>
                 </Col>
             </Row>
-
+            <Row>
+            <Carrousel />
+            </Row>
             <Row className="p-2">
                 <Card >
                     <Card.Header> <b>Productos </b></Card.Header>
-
                     <Row className='mt-2'>
                         {arrayProductos.length > 0
                             ? arrayProductos.map((item) => (
