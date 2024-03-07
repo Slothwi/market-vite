@@ -6,14 +6,16 @@ const CardProduct = ({ item, accion }) => {
 
   return (
     <div>
-      <Card style={{ width: '20rem' }} className='mt-2' key={item.id}>
+      <Card style={{ width: '15rem' }} className='mt-2' key={item.id}>
         <div className='d-flex justify-content-between'>
           <Card.Img className='mt-3' variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
           <div className='d-flex flex-column'>
-            {item.precio > 10000 ?
-              <span><Badge bg="secondary">Envio gratis</Badge> </span>
-              :
-              <span><Badge bg="primary">LLega mañana</Badge> </span>}
+            {accion != 'Modificar' ? 
+                  item.precio > 10000 ?
+                     <span><Badge bg="secondary">Envio gratis</Badge> </span>
+                        :
+                     <span><Badge bg="primary">LLega mañana</Badge> </span>
+                  : <span></span>}
           </div>
         </div>
 

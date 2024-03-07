@@ -24,10 +24,16 @@ const Access = () => {
     const validateForm = () => {
         const { email, password } = form
         const newErrors = {}
-        if (!email || email === '') newErrors.email = 'Ingrese email'
-        else if (!emailRegex.test(form.email)) newErrors.email = 'El formato del email no es correcto'
-        if (!password || password === '') newErrors.password = 'Ingrese password'
+        if (!email || email === '') {
+            newErrors.email = 'Ingrese email'
+        }
+        else if (!emailRegex.test(form.email)) {
+            newErrors.email = 'El formato del email no es correcto'
+        }
 
+        if (!password || password === '') {
+            newErrors.password = 'Ingrese Contraseña'
+        }
         return newErrors
     }
 
@@ -35,7 +41,7 @@ const Access = () => {
         e.preventDefault()
 
         const formErrors = validateForm()
-        if (Object.keys(formErrors).length > 0) { setErrors(formErrors) }
+        if (Object.keys(formErrors).length > 0)  { setErrors(formErrors) }
         else {
             navigate('/mainpage')
         }
@@ -84,7 +90,7 @@ const Access = () => {
                         onClick={handleSubmit} >Acceder
                     </Button>
                     <NavLink to="/register">
-                        <Button variant="outline-light" type="submit" >Registrarse</Button>
+                        <Button variant="outline-light"> Registrarse</Button>
                     </NavLink>
                 </Form.Group>
 
