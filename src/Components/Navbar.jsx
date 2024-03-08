@@ -25,13 +25,11 @@ const Navigation = () => {
                     <Nav >
                         <NavDropdown title={
                             <span className="text-white">Mi Cuenta</span>} >
-                            <NavDropdown.Item href="/mainpage/mypublications">Mis Publicaciones</NavDropdown.Item>
-                            <NavDropdown.Item href="/mainpage/historial">
-                                Historial de Compra
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="/mainpage/publish">Publicar Artículo</NavDropdown.Item>
+                            <NavDropdown.Item ><NavLink to="/MainPage/Mypublications" className="text-dark">Mis Publicaciones</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item ><NavLink to="/MainPage/Historial" className="text-dark">Hsitorial De Compra</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item ><NavLink to="/MainPage/Publish" className="text-dark">Publicar Articulo</NavLink></NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/mainpage/profile"><SquareUser /> Mi Perfil</NavDropdown.Item>
+                            <NavDropdown.Item ><NavLink to="/MainPage/Profile" className="text-dark"><SquareUser /> Mi Perfil</NavLink></NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
