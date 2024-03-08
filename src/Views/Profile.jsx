@@ -1,10 +1,10 @@
-import { Container, Nav } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from "react-router-dom";
-import Carrousel from "../Components/Carrousel";
+import Carrousel from "../components/Carrousel";
 
 
 

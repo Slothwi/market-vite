@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import "../assets/css/Config.css"
 import { Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import Carrousel from '../Components/Carrousel';
+import Carrousel from '../components/Carrousel';
 
 
 const Config = () => {

@@ -3,7 +3,7 @@ import "../assets/css/Access.css"
 import { CircleUser } from 'lucide-react';
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
-import GoogleAuth from '../Components/GoogleAuth';
+import GoogleAuth from '../components/GoogleAuth';
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const initialForm = { email: '', password: '' }

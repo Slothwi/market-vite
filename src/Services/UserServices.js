@@ -13,3 +13,16 @@ const registerUser = async ( user ) => {
   }
 };
 export { registerUser }
+
+
+const loginUser = async ( user ) => {
+  
+  try {
+    const response = await axios.post(urlBaseServer + '/login', user);
+    return response
+  } catch (error) {
+    console.error('error loginUser: ', error)
+    return null
+  }
+};
+export { loginUser }

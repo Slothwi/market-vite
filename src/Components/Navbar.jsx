@@ -2,7 +2,7 @@ import { Nav, Navbar, NavDropdown, Badge, Container } from 'react-bootstrap';
 import "../assets/css/Navbar.css"
 import { Store, ShoppingCart, SquareUser } from 'lucide-react';
 import { useContext } from 'react';
-import { ProductContext } from '../Context/ProductContext';
+import { ProductContext } from '../context/ProductContext';
 import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {

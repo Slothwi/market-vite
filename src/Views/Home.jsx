@@ -1,9 +1,9 @@
 import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
 import { useEffect, useState } from 'react';
-import CardProduct from '../Components/CardProduct'
+import CardProduct from '../components/CardProduct'
 import { Search } from 'lucide-react';
-import { getProducts } from "../Services/ProductServices";
-import Carrousel from "../Components/Carrousel";
+import { getProducts } from "../services/ProductServices";
+import Carrousel from "../components/Carrousel";
 
 
 const Home = () => {

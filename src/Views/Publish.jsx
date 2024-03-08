@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { Container } from "react-bootstrap";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Carrousel from '../Components/Carrousel';
+import Carrousel from '../components/Carrousel';
 import { Ban,ArrowUpFromLine } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 

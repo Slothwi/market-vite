@@ -1,9 +1,9 @@
 import { Container, Form, Button } from 'react-bootstrap'
 import "../assets/css/Access.css"
 import { useState } from 'react'
-import { registerUser } from "../Services/UserServices";
-
+import { registerUser } from "../services/UserServices";
 import { useNavigate } from 'react-router-dom';
+import SweetAlert2 from 'react-sweetalert2'
 
 const iniForm = { name: '', email: '', password1: '', password2: '' }
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -11,9 +11,11 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const Register = () => {
     const navigate = useNavigate()
 
+    const [swalProps, setSwalProps] = useState({});
+
     const [form, setForm] = useState(iniForm)
     const [error, setError] = useState({})
-  
+
     const setField = (field, value) => {
         setForm({ ...form, [field]: value })
 
@@ -49,12 +51,14 @@ const Register = () => {
 
         const user = { nombre: form.name, email: form.email, password: form.password1, imagen: '' }
         const response = await registerUser(user)
-        if (response.status == 201)
-        {   
-            navigate('/mainpage')
-            console.log('regcreado', response.status)}
+        if (response.status == 201) {
+            setSwalProps({ show: true, title: 'Informacion', text: 'Usuario Registrado correctamente', icon: 'success',  allowOutsideClick: false, allowEscapeKey: false })
+        }        
     };
 
+    const handleClick = () => {
+        navigate('/mainpage')
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -137,6 +141,8 @@ const Register = () => {
                         onClick={handleSubmit} >Registrarse</Button>
                 </div>
             </Form>
+            <SweetAlert2 {...swalProps}
+               onConfirm={handleClick} />
         </Container>
     );
 };

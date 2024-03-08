@@ -1,6 +1,6 @@
 
 import { Container, Row, Col, Card } from "react-bootstrap";
-import CardProduct from '../Components/CardProduct'
+import CardProduct from '../components/CardProduct'
 import { useEffect, useState } from 'react';
 
 const listPublicaciones = [

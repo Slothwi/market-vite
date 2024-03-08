@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Container, Row, Col, Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { ProductContext } from '../Context/ProductContext'
+import { ProductContext } from '../context/ProductContext'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { PlusCircle, MinusCircle, CircleDollarSign, ShoppingBasket } from "lucide-react";
