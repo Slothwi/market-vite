@@ -1,6 +1,6 @@
 import { Nav, Navbar, NavDropdown, Badge, Container } from 'react-bootstrap';
 import "../assets/css/Navbar.css"
-import { Store, ShoppingCart, SquareUser } from 'lucide-react';
+import { Store, ShoppingCart, SquareUser, CircleUser, ArrowUpFromLine, History, BookText } from 'lucide-react';
 import { useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { NavLink } from 'react-router-dom';
@@ -24,10 +24,10 @@ const Navigation = () => {
                     </Nav >
                     <Nav >
                         <NavDropdown title={
-                            <span className="text-white">Mi Cuenta</span>} >
-                            <NavDropdown.Item ><NavLink to="/MainPage/Mypublications" className="text-dark">Mis Publicaciones</NavLink></NavDropdown.Item>
-                            <NavDropdown.Item ><NavLink to="/MainPage/Historial" className="text-dark">Hsitorial De Compra</NavLink></NavDropdown.Item>
-                            <NavDropdown.Item ><NavLink to="/MainPage/Publish" className="text-dark">Publicar Articulo</NavLink></NavDropdown.Item>
+                            <span className="text-white"><CircleUser/>Mi Cuenta</span>} >
+                            <NavDropdown.Item ><NavLink to="/MainPage/Mypublications" className="text-dark"><BookText/>Mis Publicaciones</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item ><NavLink to="/MainPage/Historial" className="text-dark"><History/>Historial De Compra</NavLink></NavDropdown.Item>
+                            <NavDropdown.Item ><NavLink to="/MainPage/Publish" className="text-dark"><ArrowUpFromLine/>Publicar Articulo</NavLink></NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item ><NavLink to="/MainPage/Profile" className="text-dark"><SquareUser /> Mi Perfil</NavLink></NavDropdown.Item>
                         </NavDropdown>

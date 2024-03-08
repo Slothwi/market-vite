@@ -5,23 +5,25 @@ import Home from '../src/views/Home'
 import Access from '../src/views/Access'
 import ShoppingCart from './views/ShoppingCart'
 import Favs from '../src/views/Favs'
-import Profile from '../src/views/Profile'
+import Profile from './views/Profile'
 import Publish from '../src/views/Publish'
 import Registro from './views/Register'
 import Mypublications from './views/Mypublications'
 import Historial from '../src/views/Historial'
 import MainPage from '../src/components/MainPage'
-import Config from '../src/views/Config'
+import Config from './views/Config'
 import NotFound from "../src/views/NotFound";
 
 import { Routes, Route } from "react-router-dom";
 import ProductProvider from './context/ProductContext'
+import { UserProvider } from './context/UserContext'
 
 function App() {
 
   return (
     <div>
       <ProductProvider>
+        <UserProvider>
         <Routes>
           <Route path="/" element={<Access />} />
           <Route path="/mainpage" element={<MainPage />}>
@@ -46,6 +48,7 @@ function App() {
           <Route path="*" element={<NotFound />}
         />
         </Routes>
+        </UserProvider>
       </ProductProvider>
     </div>
   )
