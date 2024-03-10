@@ -1,4 +1,4 @@
-import { Nav, Navbar, Badge, Container, Dropdown, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, Badge, Dropdown, NavDropdown } from 'react-bootstrap';
 import "../assets/css/Navbar.css"
 import { Store, ShoppingCart, SquareUser, CircleUser, ArrowUpFromLine, History, BookText } from 'lucide-react';
 import { useContext } from 'react';
