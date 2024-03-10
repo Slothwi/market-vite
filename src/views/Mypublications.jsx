@@ -1,7 +1,6 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import CardProduct from '../components/CardProduct'
 import { useEffect, useState } from 'react';
-import Carrousel from "../components/Carrousel";
 
 const listPublicaciones = [
     {
@@ -36,8 +35,7 @@ const Mypublications = () => {
     }, []);
 
     return (
-        <>
-        <Container>
+           <Container>
             <Row className="p-2">
                 <Card >
                     <Card.Header> <h4> <b>Mis Publicaciones </b></h4></Card.Header>
@@ -54,9 +52,6 @@ const Mypublications = () => {
                 </Card>
             </Row>
         </Container>
-        <Container>
-            <Carrousel />
-        </Container></>
     );
 };
 

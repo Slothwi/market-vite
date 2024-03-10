@@ -1,12 +1,14 @@
-import { Nav, Navbar, NavDropdown, Badge, Container } from 'react-bootstrap';
+import { Nav, Navbar, Badge, Container, Dropdown, NavDropdown } from 'react-bootstrap';
 import "../assets/css/Navbar.css"
 import { Store, ShoppingCart, SquareUser, CircleUser, ArrowUpFromLine, History, BookText } from 'lucide-react';
 import { useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { NavLink } from 'react-router-dom';
+import { UserContext } from '../context/UserContext'
 
 const Navigation = () => {
     const { quantityProduct } = useContext(ProductContext)
+    const { userData } = useContext(UserContext)
 
     const logo = "https://us.123rf.com/450wm/butenkov/butenkov2103/butenkov210300044/180573886-logotipo-vectorial-de-piezas-de-autom%C3%B3viles.jpg?ver=6"
 
@@ -22,14 +24,15 @@ const Navigation = () => {
                         <NavLink className="text-white p-2" to='/mainpage/shopping-cart'><ShoppingCart />Carrito <Badge bg="secondary">{quantityProduct()}</Badge>
                         </NavLink>
                     </Nav >
+
                     <Nav >
                         <NavDropdown title={
-                            <span className="text-white"><CircleUser/>Mi Cuenta</span>} >
-                            <NavDropdown.Item ><NavLink to="/MainPage/Mypublications" className="text-dark"><BookText/>Mis Publicaciones</NavLink></NavDropdown.Item>
-                            <NavDropdown.Item ><NavLink to="/MainPage/Historial" className="text-dark"><History/>Historial De Compra</NavLink></NavDropdown.Item>
-                            <NavDropdown.Item ><NavLink to="/MainPage/Publish" className="text-dark"><ArrowUpFromLine/>Publicar Articulo</NavLink></NavDropdown.Item>
+                            <span className="text-white"> {userData.nombre} <CircleUser /></span>} >
+                            <Dropdown.Item as={NavLink} to="/MainPage/Mypublications"><BookText />Mis Publicaciones</Dropdown.Item>
+                            <Dropdown.Item as={NavLink} to="/MainPage/Historial"><History />Historial De Compra</Dropdown.Item>
+                            <Dropdown.Item as={NavLink} to="/MainPage/Publish"><ArrowUpFromLine />Publicar Articulo</Dropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item ><NavLink to="/MainPage/Profile" className="text-dark"><SquareUser /> Mi Perfil</NavLink></NavDropdown.Item>
+                            <Dropdown.Item as={NavLink} to="/MainPage/Profile"><SquareUser /> Mi Perfil</Dropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

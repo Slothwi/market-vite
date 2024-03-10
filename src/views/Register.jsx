@@ -1,7 +1,7 @@
 import { Container, Form, Button } from 'react-bootstrap'
 import "../assets/css/Access.css"
 import { useState } from 'react'
-import { registerUser } from "../services/UserServices";
+import { registerUser, loginUser } from "../services/UserServices";
 import { useNavigate } from 'react-router-dom';
 import SweetAlert2 from 'react-sweetalert2'
 
@@ -48,12 +48,22 @@ const Register = () => {
     }
 
     const regUser = async () => {
-
-        const user = { nombre: form.name, email: form.email, password: form.password1, imagen: '' }
-        const response = await registerUser(user)
-        if (response.status == 201) {
-            setSwalProps({ show: true, title: 'Informacion', text: 'Usuario Registrado correctamente', icon: 'success',  allowOutsideClick: false, allowEscapeKey: false })
-        }        
+        setSwalProps({})
+        //Valida que el usuario ya este registrado
+        const user = { email: form.email, password: form.password }
+        const resp = await loginUser(user)
+        if (resp.status == 200)
+            setSwalProps({ show: true, title: 'Informacion', text: 'Usuario ya esta registrado', icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
+        else {
+            const user = { nombre: form.name, email: form.email, password: form.password1, imagen: '' }
+            const response = await registerUser(user)
+            // const response = 207
+            if (response.status == 201)
+                // if (response == 201)
+                setSwalProps({ show: true, title: 'Informacion', text: 'Usuario Registrado correctamente', icon: 'success', showConfirmButton: true, allowOutsideClick: false, allowEscapeKey: false })
+            else
+                setSwalProps({ show: true, title: 'Informacion', text: 'Usuario no fue registrado', icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
+        }
     };
 
     const handleClick = () => {
@@ -142,7 +152,8 @@ const Register = () => {
                 </div>
             </Form>
             <SweetAlert2 {...swalProps}
-               onConfirm={handleClick} />
+                onConfirm={handleClick}
+            />
         </Container>
     );
 };

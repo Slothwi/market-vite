@@ -1,15 +1,24 @@
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import "../assets/css/Access.css"
 import { CircleUser } from 'lucide-react';
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import GoogleAuth from '../components/GoogleAuth';
+import SweetAlert2 from 'react-sweetalert2'
+import { UserContext } from '../context/UserContext'
+import { loginUser } from '../services/UserServices'
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const initialForm = { email: '', password: '' }
 
 const Access = () => {
     const navigate = useNavigate()
+
+    const [isLoading, setisLoading] = useState(false)
+
+    const { setUserData } = useContext(UserContext)
+
+    const [swalProps, setSwalProps] = useState({});
 
     const [form, setForm] = useState(initialForm)
     const [errors, setErrors] = useState({})
@@ -37,13 +46,34 @@ const Access = () => {
         return newErrors
     }
 
+    const validateUser = async () => {
+        setSwalProps({})
+        setisLoading(true)
+        const user = { email: form.email, password: form.password }
+        const response = await loginUser(user)
+        if (response?.status == 200) {
+            setUserData({
+                id_usuario: 99,
+                email: response.data.data.email,
+                nombre: response.data.data.nombre,
+                avatar: response.data.data.avatar
+            })
+            navigate('/mainpage')
+        }
+        else {
+            setSwalProps({ show: true, title: 'Informacion', text: response.response.data.message, icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
+        }
+        setisLoading(false)
+    };
+
     const handleSubmit = (e) => {
+
         e.preventDefault()
 
         const formErrors = validateForm()
-        if (Object.keys(formErrors).length > 0)  { setErrors(formErrors) }
+        if (Object.keys(formErrors).length > 0) { setErrors(formErrors) }
         else {
-            navigate('/mainpage')
+            validateUser()
         }
     }
 
@@ -84,15 +114,29 @@ const Access = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3 buttons"  >
-                    <Button
-                        variant="outline-light"
-                        type="submit"
-                        onClick={handleSubmit} >Acceder
-                    </Button>
+                    {!isLoading ?
+                        <Button
+                            variant="outline-light"
+                            type="submit"
+                            onClick={handleSubmit} >Acceder
+                        </Button>
+                        :
+                        <Button  variant="outline-light" disabled>
+                            <Spinner
+                                as="span"
+                                animation="grow"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            />
+                            Cargando...
+                        </Button>
+                    }
                     <NavLink to="/register">
                         <Button variant="outline-light"> Registrarse</Button>
                     </NavLink>
                 </Form.Group>
+
 
                 <Row>
                     <Col lg={12} className="d-flex justify-content-center">
@@ -100,6 +144,7 @@ const Access = () => {
                     </Col>
                 </Row>
             </Form>
+            <SweetAlert2 {...swalProps} />
         </div>
     );
 };

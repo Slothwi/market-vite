@@ -5,6 +5,13 @@
   color: white;
 }
 
+.dropDownClass{
+  background-color: #363683;
+  color: white;
+  border: 0;
+}
+
+
 .contentArea {
   flex-grow: 1;
 }

@@ -16,7 +16,7 @@ import NotFound from "../src/views/NotFound";
 
 import { Routes, Route } from "react-router-dom";
 import ProductProvider from './context/ProductContext'
-import { UserProvider } from './context/UserContext'
+import UserProvider from './context/UserContext'
 
 function App() {
 
