@@ -13,20 +13,19 @@ const Navigation = () => {
     const logo = "https://us.123rf.com/450wm/butenkov/butenkov2103/butenkov210300044/180573886-logotipo-vectorial-de-piezas-de-autom%C3%B3viles.jpg?ver=6"
 
     return (
-        <Navbar expand="lg" className="navbar" fixed='top' variant="dark">
-            <Container className='m-0'>
+        <Navbar expand="lg" className="navbar p-3" fixed='top' variant="dark">
                 <NavLink to='/mainpage/home'> <img src={logo} alt="logo" /> </NavLink>
                 <Navbar.Brand className="text-white ms-2" href="/mainpage/home">Autos Parts</Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-between ms-5" >
-                    <Nav >
+                    <Nav  >
                         <NavLink className="text-white p-2" to='/mainpage/home'> <Store />Market </NavLink>
                         <NavLink className="text-white p-2" to='/mainpage/shopping-cart'><ShoppingCart />Carrito <Badge bg="secondary">{quantityProduct()}</Badge>
                         </NavLink>
                     </Nav >
 
-                    <Nav >
-                        <NavDropdown title={
+                    <Nav  >
+                        <NavDropdown align = "end" title={
                             <span className="text-white"> {userData.nombre} <CircleUser /></span>} >
                             <Dropdown.Item as={NavLink} to="/MainPage/Mypublications"><BookText />Mis Publicaciones</Dropdown.Item>
                             <Dropdown.Item as={NavLink} to="/MainPage/Historial"><History />Historial De Compra</Dropdown.Item>
@@ -36,7 +35,7 @@ const Navigation = () => {
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
-            </Container>
+            
         </Navbar >
     );
 }
