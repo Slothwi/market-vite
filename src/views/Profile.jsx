@@ -22,6 +22,7 @@ const Profile = () => {
                                 name="nuevoNombre"
                                 value={userDataNuevo.nombre}
                                 placeholder="Nombre"
+                                disabled
                                  />
                         </Col>
                     </Row>
