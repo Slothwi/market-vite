@@ -6,7 +6,7 @@ const CardProduct = ({ item, accion }) => {
 
   return (
     <div>
-      <Card style={{ width: '15rem' }} className='mt-2' key={item.id}>
+      <Card style={{ width: '15rem' }} className='mt-4' key={item.id}>
         <div className='d-flex justify-content-between'>
           <Card.Img className='mt-3' variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
           <div className='d-flex flex-column'>
@@ -28,7 +28,7 @@ const CardProduct = ({ item, accion }) => {
           <div className='m-0'><small>{item.marca}</small></div>
 
           <hr />
-          <p><b>{item.descripcion} </b></p>
+          <p><b>{item.detalle} </b></p>
 
           <Row>
             <Col >SKU: {item.SKU}</Col>
@@ -43,7 +43,7 @@ const CardProduct = ({ item, accion }) => {
           <Row>
             <Col className="d-flex justify-content-between align-items-center mt-1">
               <span><small>
-                {item.nuevousado ? <p><mark>Usado</mark></p> : <p><mark>Nuevo</mark></p>}
+                {!item.nuevousado ? <p><mark>Nuevo</mark></p> : <p><mark>Usado</mark></p>}
                 </small></span>
               {accion == 'Modificar' ?
                 <Button className='p-1 m-2 ' variant='outline-primary' size='md' > <Save /> Modificar</Button>

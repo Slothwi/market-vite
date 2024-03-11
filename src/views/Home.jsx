@@ -4,36 +4,48 @@ import CardProduct from '../components/CardProduct'
 import { Search } from 'lucide-react';
 import { getProducts } from "../services/ProductServices";
 import Carrousel from "../components/Carrousel";
+import HomeEmpty from "../components/HomeEmpty";
 
 
 const Home = () => {
+
     const [arrayProductos, setArrayProductos] = useState([]);
     const [name, setName] = useState("");
+
+    const [show, setShow] = useState(true);
 
     // Al ingresar patron de busqueda va a consultar
     const buscarProductos = (e) => {
         setName(e.target.value)
+        setShow(false)
         if (name === '') getProd()
         else {
             const listaFiltrada = arrayProductos.filter(obj => obj.nombre.toLowerCase().includes(name))
             setArrayProductos(listaFiltrada)
+            console.log(arrayProductos)
         }
     }
 
     const getProd = async () => {
-        const data = await getProducts()
+        const orderByParam = "nombre"
+        const pageParam = 1
+        const limitsParam = 6
+        const query = { order_by: orderByParam, page: pageParam, limits:limitsParam }
+        const data = await getProducts( query)
         setArrayProductos(data.results)
     };
 
     useEffect(() => {
+        setShow(true)
         getProd()
     }, []);
 
     return (
         <Container>
             {/* buscador de productos */}
-            <Row className="" >
-                <Col lg={7} md={6} sm={12} >
+            <Row >
+                <Col lg={3}></Col>
+                <Col lg={6} md={6} sm={12}  >
                     <InputGroup>
                         <InputGroup.Text> <Search /></InputGroup.Text>
                         <Form.Control
@@ -49,21 +61,18 @@ const Home = () => {
                 </Col>
             </Row>
             {/* carrusel*/}
-            <Row>
+            {show && <Row>
                 <Carrousel />
-            </Row>
+            </Row>}
             {/* despliega los productos */}
-            <Row className="p-2">
-                <Row className='mt-3 mb-3'>
+            <Row className="p-3 ">
                     {arrayProductos.length > 0
                         ? arrayProductos.map((item, index) => (
-                            <Col key={index} className='ms-2'>
+                            <Col key={index} className='ms-2 d-flex justify-content-center'>
                                 <CardProduct item={item} accion="Agregar" />
                             </Col>
                         ))
-                        : <div>No hay datos</div>}
-                </Row>
-
+                        : <HomeEmpty />}
             </Row>
         </Container>
     );

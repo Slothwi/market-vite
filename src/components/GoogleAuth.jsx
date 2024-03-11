@@ -5,7 +5,7 @@ import SweetAlert2 from 'react-sweetalert2'
 import { UserContext } from '../context/UserContext'
 import { loginGoogle } from '../services/UserServices'
 
-const GoogleAuth = () => {
+const GoogleAuth = ( {setisLoading} ) => {
     const navigate = useNavigate()
     const clientId = import.meta.env.VITE_CLIENTID
     const { setUserData } = useContext(UserContext)
@@ -13,6 +13,8 @@ const GoogleAuth = () => {
     const [swalProps, setSwalProps] = useState({});
 
     const validateUser = async (user) => {
+        setisLoading(true)
+
         const response = await loginGoogle(user)
         if (response?.status == 200) {
             setUserData({

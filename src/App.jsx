@@ -25,6 +25,7 @@ function App() {
       <ProductProvider>
         <UserProvider>
         <Routes>
+          {/* <Route path="/" element={<MainPage />} /> */}
           <Route path="/" element={<Access />} />
           <Route path="/mainpage" element={<MainPage />}>
             <Route index element={<Home />} />

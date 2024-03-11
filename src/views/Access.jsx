@@ -129,7 +129,7 @@ const Access = () => {
                                 role="status"
                                 aria-hidden="true"
                             />
-                            Cargando...
+                             Cargando...
                         </Button>
                     }
                     <NavLink to="/register">
@@ -140,7 +140,7 @@ const Access = () => {
 
                 <Row>
                     <Col lg={12} className="d-flex justify-content-center">
-                        <GoogleAuth></GoogleAuth>
+                        <GoogleAuth setisLoading={setisLoading}> </GoogleAuth>
                     </Col>
                 </Row>
             </Form>

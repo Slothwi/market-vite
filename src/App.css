@@ -52,6 +52,12 @@
 
 /* Imagen de NotFound */
 .imgsize {
+  width: 20%;
+  height: 20%;
+}
+
+/* Imagen de HomeEmpty */
+.imgsize {
   width: 40%;
-  height: 40%;
+  height: 60%;
 }

@@ -2,20 +2,24 @@ import { createContext, useState, useEffect } from 'react'
  
 export const ProductContext = createContext()
 
-const listPaso = [
+const listPasoShopping = [
   {
-    "desc": "Neumaticos Aro 30",
-    "id": "P001",
-    "name": "Neumatico",
-    "price": 23000,
+    "id": "1",
+    "nombre": "Bujia",
+    "marca": "Champion",
+    "descripcion": "Bujia hasta 60mil KM",
+    "precio": 7000,
+    "imagen":"imagen1",
     "cantidad":1
   },
   {
-    "desc": "Pastillas Freno",
-    "id": "P002",
-    "name": "Pastillas",
-    "price": 32000,
-    "cantidad": 5
+    "id": "2",
+    "nombre": "Correa",
+    "marca": "Gates",
+    "descripcion": "Correa 7PK",
+    "precio": 10000,
+    "imagen":"imagen2",
+    "cantidad":1
   }
 ]
 
@@ -23,7 +27,7 @@ const ProductProvider = ({ children }) => {
   const [listShoppingCart, setListShoppingCart] = useState([])
 
   const searchProducts = () => {
-    setListShoppingCart(listPaso)
+    setListShoppingCart(listPasoShopping)
   }
 
   const addProductShopping = (prod) => {
@@ -47,7 +51,7 @@ const ProductProvider = ({ children }) => {
   }
 
   const calculateAmount = () => {
-    const total = (listShoppingCart.reduce((accumulator, prod) => accumulator + prod.price * prod.cantidad, 0))
+    const total = (listShoppingCart.reduce((accumulator, prod) => accumulator + prod.precio * prod.cantidad, 0))
     return total.toLocaleString()
   }
 

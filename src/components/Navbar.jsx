@@ -13,7 +13,7 @@ const Navigation = () => {
     const logo = "https://us.123rf.com/450wm/butenkov/butenkov2103/butenkov210300044/180573886-logotipo-vectorial-de-piezas-de-autom%C3%B3viles.jpg?ver=6"
 
     return (
-        <Navbar expand="lg" className="navbar p-3" fixed='top' variant="dark">
+        <Navbar expand="lg" className="navbar p-2" fixed='top' variant="dark">
                 <NavLink to='/mainpage/home'> <img src={logo} alt="logo" /> </NavLink>
                 <Navbar.Brand className="text-white ms-2" href="/mainpage/home">Autos Parts</Navbar.Brand>
                 <Navbar.Toggle />
