@@ -1,11 +1,11 @@
-import { useContext } from 'react';
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { UserContext } from '../context/UserContext'
+
 
 const Profile = () => {
 
-    const { userData } = useContext(UserContext)
+    const userData = window.sessionStorage.getItem('userData') !== null ?
+    JSON.parse(window.sessionStorage.getItem('userData')) : null
     const userDataNuevo = userData
     
     console.log(userDataNuevo)

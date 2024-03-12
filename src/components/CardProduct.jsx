@@ -11,7 +11,7 @@ const CardProduct = ({ item, accion }) => {
           <Card.Img className='mt-3' variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
           <div className='d-flex flex-column'>
             {accion != 'Modificar' ? 
-                  item.precio > 10000 ?
+                  item.precio > 7000 ?
                      <span><Badge bg="secondary">Envio gratis</Badge> </span>
                         :
                      <span><Badge bg="primary">LLega mañana</Badge> </span>
@@ -28,7 +28,7 @@ const CardProduct = ({ item, accion }) => {
           <div className='m-0'><small>{item.marca}</small></div>
 
           <hr />
-          <p><b>{item.detalle} </b></p>
+          <p><b>{item.descripcion} </b></p>
 
           <Row>
             <Col >SKU: {item.SKU}</Col>

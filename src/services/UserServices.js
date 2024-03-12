@@ -2,7 +2,7 @@ import axios from "axios";
 
 const urlBaseServer = import.meta.env.VITE_URLBACKEND
 
-const registerUser = async ( user ) => {
+const registerUser = async (user) => {
   try {
     const response = await axios.post(urlBaseServer + '/usuarios', user);
     return response
@@ -14,9 +14,9 @@ const registerUser = async ( user ) => {
 export { registerUser }
 
 
-const loginUser = async ( user ) => {
+const loginUser = async (user) => {
   try {
-   const response = await axios.post(urlBaseServer + '/login', user);
+    const response = await axios.post(urlBaseServer + '/login', user);
     return response
   } catch (error) {
     console.error('error loginUser: ', error)
@@ -26,9 +26,9 @@ const loginUser = async ( user ) => {
 export { loginUser }
 
 
-const loginGoogle = async ( user ) => {
+const loginGoogle = async (user) => {
   try {
-   const response = await axios.post(urlBaseServer + '/google-auth', user);
+    const response = await axios.post(urlBaseServer + '/google-auth', user);
     return response
   } catch (error) {
     console.error('error loginGoogle: ', error)

@@ -2,15 +2,12 @@ import { Button, Col, Form, Row, Container } from 'react-bootstrap';
 import "../assets/css/Config.css"
 import { NavLink } from 'react-router-dom';
 import Carrousel from '../components/Carrousel';
-import { useState, useContext } from 'react';
-import { UserContext } from '../context/UserContext'
-
+import { useState } from 'react';
 
 const Config = () => {
 
-    const { returnDataUser } = useContext(UserContext)
-
-    const { userData, setUserData } = returnDataUser();
+    const userData = window.sessionStorage.getItem('userData') !== null ?
+        JSON.parse(window.sessionStorage.getItem('userData')) : null
 
 
     // Almacenar nuevos  Datos
@@ -27,10 +24,10 @@ const Config = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUserData((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
+        // setUserData((prevData) => ({
+        //     ...prevData,
+        //     [name]: value
+        // }));
     };
 
     // Manejo de envio form.

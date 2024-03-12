@@ -16,17 +16,16 @@ import NotFound from "../src/views/NotFound";
 
 import { Routes, Route } from "react-router-dom";
 import ProductProvider from './context/ProductContext'
-import UserProvider from './context/UserContext'
 
 function App() {
 
   return (
     <div>
       <ProductProvider>
-        <UserProvider>
-        <Routes>
-          {/* <Route path="/" element={<MainPage />} /> */}
+        <Routes>         
           <Route path="/" element={<Access />} />
+          <Route path="/register" element={<Registro />} />
+          
           <Route path="/mainpage" element={<MainPage />}>
             <Route index element={<Home />} />
             <Route index element={<Favs />} />
@@ -45,11 +44,10 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="config" element={<Config />} />
           </Route>
-          <Route path="/register" element={<Registro />} />
+   
           <Route path="*" element={<NotFound />}
         />
         </Routes>
-        </UserProvider>
       </ProductProvider>
     </div>
   )

@@ -1,12 +1,12 @@
 import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import "../assets/css/Access.css"
 import { CircleUser } from 'lucide-react';
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import GoogleAuth from '../components/GoogleAuth';
 import SweetAlert2 from 'react-sweetalert2'
-import { UserContext } from '../context/UserContext'
 import { loginUser } from '../services/UserServices'
+ 
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const initialForm = { email: '', password: '' }
@@ -15,9 +15,6 @@ const Access = () => {
     const navigate = useNavigate()
 
     const [isLoading, setisLoading] = useState(false)
-
-    const { setUserData } = useContext(UserContext)
-
     const [swalProps, setSwalProps] = useState({});
 
     const [form, setForm] = useState(initialForm)
@@ -47,29 +44,33 @@ const Access = () => {
     }
 
     const validateUser = async () => {
-        setSwalProps({})
-        setisLoading(true)
-        const user = { email: form.email, password: form.password }
-        const response = await loginUser(user)
-        if (response?.status == 200) {
-            setUserData({
-                id_usuario: 99,
-                email: response.data.data.email,
-                nombre: response.data.data.nombre,
-                avatar: response.data.data.avatar
-            })
-            navigate('/mainpage')
+        try {
+            setSwalProps({})
+            setisLoading(true)
+            const user = { email: form.email, password: form.password }
+            const response = await loginUser(user)
+            if (response?.status == 200) {
+                window.sessionStorage.setItem('token', response.data.token)
+                window.sessionStorage.setItem('userData', JSON.stringify({
+                    id_usuario: 99,
+                    email: response.data.data.email,
+                    nombre: response.data.data.nombre,
+                    avatar: response.data.data.avatar
+                }))
+                navigate('/mainpage')
+            }
+            else {
+                setSwalProps({ show: true, title: 'Informacion', text: response.response.data.message, icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
+            }
+            setisLoading(false)
+        } catch (error) {
+            window.sessionStorage.removeItem('token')
+            window.sessionStorage.removeItem('userData')
         }
-        else {
-            setSwalProps({ show: true, title: 'Informacion', text: response.response.data.message, icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
-        }
-        setisLoading(false)
     };
 
     const handleSubmit = (e) => {
-
         e.preventDefault()
-
         const formErrors = validateForm()
         if (Object.keys(formErrors).length > 0) { setErrors(formErrors) }
         else {
@@ -77,6 +78,7 @@ const Access = () => {
         }
     }
 
+    
     return (
         <div className="access text-white">
             <CircleUser />
@@ -121,7 +123,7 @@ const Access = () => {
                             onClick={handleSubmit} >Acceder
                         </Button>
                         :
-                        <Button  variant="outline-light" disabled>
+                        <Button variant="outline-light" disabled>
                             <Spinner
                                 as="span"
                                 animation="grow"
@@ -129,7 +131,7 @@ const Access = () => {
                                 role="status"
                                 aria-hidden="true"
                             />
-                             Cargando...
+                            Cargando...
                         </Button>
                     }
                     <NavLink to="/register">
