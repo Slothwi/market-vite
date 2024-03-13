@@ -29,7 +29,7 @@ const GoogleAuth = ({ setisLoading }) => {
                 setSwalProps({ show: true, title: 'Informacion', text: response.response.data.message, icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
             }
         } catch (error) {
-            console.error('error GoogleAuth',error)
+            console.error('error googleAuth',error)
             window.sessionStorage.removeItem('token')
             window.sessionStorage.removeItem('userData')
         }
