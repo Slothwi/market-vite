@@ -14,15 +14,14 @@ const GoogleAuth = ({ setisLoading }) => {
     const validateUser = async (user) => {
         try {
             setisLoading(true)
-            console.log('user.credential', user.credential)
             const response = await loginGoogle(user)
-            if (response?.status == 200) {
+            if (response.status == 200) {
                 window.sessionStorage.setItem('token', response.data.token)
                 window.sessionStorage.setItem('userData', JSON.stringify({
                     id_usuario: 99,
-                    email: response.data.data.email,
-                    nombre: response.data.data.nombre,
-                    avatar: response.data.data.avatar
+                    email: response.data.payload.email,
+                    nombre: response.data.payload.nombre,
+                    avatar: response.data.payload.avatar
                 }))
                 navigate('/mainpage')
             }
@@ -30,6 +29,7 @@ const GoogleAuth = ({ setisLoading }) => {
                 setSwalProps({ show: true, title: 'Informacion', text: response.response.data.message, icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
             }
         } catch (error) {
+            console.error('error GoogleAuth',error)
             window.sessionStorage.removeItem('token')
             window.sessionStorage.removeItem('userData')
         }
