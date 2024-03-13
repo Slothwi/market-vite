@@ -1,11 +1,11 @@
 import { Container, Form, Button } from 'react-bootstrap'
 import "../assets/css/Access.css"
 import { useState } from 'react'
-import { registerUser, loginUser } from "../services/UserServices";
+import { registerUser } from "../services/UserServices";
 import { useNavigate } from 'react-router-dom';
 import SweetAlert2 from 'react-sweetalert2'
 
-const iniForm = { name: '', email: '', password1: '', password2: '' }
+const iniForm = { name: '', email: '', password1: '', password2: '', imagen: '' }
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 
 const Register = () => {
@@ -24,7 +24,7 @@ const Register = () => {
     }
 
     const validateForm = () => {
-        const { name, email, password1, password2 } = form
+        const { name, email, password1, password2, imagen } = form
         const newError = {}
         if (!name || name === '') {
             newError.name = 'Ingrese nombre'
@@ -34,6 +34,9 @@ const Register = () => {
             newError.email = 'Ingrese email'
         else if (!emailRegex.test(form.email))
             newError.email = 'El formato del email no es correcto'
+
+        if (!imagen || imagen === '')
+            newError.imagen = 'Ingrese Imagen'
 
         if (!password1 || password1 === '')
             newError.password1 = 'Ingrese Contraseña'
@@ -49,22 +52,15 @@ const Register = () => {
 
     const regUser = async () => {
         setSwalProps({})
-        //Valida que el usuario ya este registrado
-        const user = { email: form.email, password: form.password }
-        const resp = await loginUser(user)
-        if (resp.status == 200)
-            setSwalProps({ show: true, title: 'Informacion', text: 'Usuario ya esta registrado', icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
-        else {
-            const user = { nombre: form.name, email: form.email, password: form.password1, imagen: '' }
-            const response = await registerUser(user)
-            // const response = 207
-            if (response.status == 201)
-                // if (response == 201)
-                setSwalProps({ show: true, title: 'Informacion', text: 'Usuario Registrado correctamente', icon: 'success', showConfirmButton: true, allowOutsideClick: false, allowEscapeKey: false })
-            else
-                setSwalProps({ show: true, title: 'Informacion', text: 'Usuario no fue registrado', icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
-        }
+
+        const user = { nombre: form.name, email: form.email, password: form.password1, imagen: form.imagen }
+        const response = await registerUser(user)
+        if (response.status == 201)
+            setSwalProps({ show: true, title: 'Informacion', text: 'Usuario Registrado correctamente', icon: 'success', showConfirmButton: true, allowOutsideClick: false, allowEscapeKey: false })
+        else
+            setSwalProps({ show: true, title: 'Informacion', text: 'Usuario no fue registrado', icon: 'error', showCancelButton: true, cancelButtonText: 'Ok', showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
     };
+
 
     const handleClick = () => {
         navigate('/mainpage')
@@ -103,7 +99,7 @@ const Register = () => {
                     <Form.Label>Correo Electronico:</Form.Label>
                     <Form.Control
                         type="email"
-                        placeholder="Ingresar Email"
+                        placeholder="Email"
                         value={form.email}
                         name='email'
                         onChange={(e) => setField('email', e.target.value)}
@@ -115,6 +111,21 @@ const Register = () => {
                     <Form.Text className="text-light">
                         Nunca Compartiremos este correo con otras personas.
                     </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" >
+                    <Form.Label>Imagen Url:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Imagen:"
+                        value={form.imagen}
+                        name='imagen'
+                        onChange={(e) => setField('imagen', e.target.value)}
+                        isInvalid={!!error.imagen}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        {error.imagen}
+                    </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-3" >

@@ -65,10 +65,9 @@
 
 /* loading de Home */
 .loading {
-  position: absolute;
+ 
   left: calc(50% - 35px);
   top: 50%;
-   
   border-radius: 50%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

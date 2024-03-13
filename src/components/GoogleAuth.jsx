@@ -14,6 +14,7 @@ const GoogleAuth = ({ setisLoading }) => {
     const validateUser = async (user) => {
         try {
             setisLoading(true)
+            console.log('user.credential', user.credential)
             const response = await loginGoogle(user)
             if (response?.status == 200) {
                 window.sessionStorage.setItem('token', response.data.token)
@@ -39,7 +40,7 @@ const GoogleAuth = ({ setisLoading }) => {
         <GoogleOAuthProvider clientId={clientId}>
             <GoogleLogin
                 onSuccess={(credentialResponse) => {
-                    const user = { credential: credentialResponse.credential, client_id: credentialResponse.clientId }
+                    const user = { credential: credentialResponse.credential, clientId: credentialResponse.clientId }
                     validateUser(user)
                 }}
                 onError={() => {
