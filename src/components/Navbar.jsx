@@ -22,13 +22,13 @@ const Navigation = () => {
 
     return (
         <Navbar expand="lg" className="navbar p-2" fixed='top' variant="dark">
-            <NavLink to='/mainpage/home'> <img src={logo} alt="logo" /> </NavLink>
+            <NavLink to='/mainpage/home'> <img className='img-logo' src={logo} alt="logo" /> </NavLink>
             <Navbar.Brand className="text-white ms-2" href="/mainpage/home">Autos Parts</Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-between ms-5" >
                 <Nav  >
-                    <NavLink className="text-white p-2" to='/mainpage/home'> <Store />Market </NavLink>
-                    <NavLink className="text-white p-2" to='/mainpage/shopping-cart'><ShoppingCart />Carrito <Badge bg="secondary">{quantityProduct()}</Badge>
+                    <NavLink className="text-white p-2 nav_menu" to='/mainpage/home'> <Store />Market </NavLink>
+                    <NavLink className="text-white p-2 nav_menu" to='/mainpage/shopping-cart'><ShoppingCart />Carrito <Badge bg="secondary">{quantityProduct()}</Badge>
                     </NavLink>
                 </Nav >
 

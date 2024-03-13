@@ -1,22 +1,24 @@
 import { Card, Button, Row, Col, Badge } from 'react-bootstrap'
 import { Save } from "lucide-react";
 import IconHeart from "./IconHeart";
+import '../assets/css/CardProduct.css';
 
 const CardProduct = ({ item, accion }) => {
 
   return (
     <div>
-      <Card style={{ width: '15rem' }} className='mt-4' key={item.id}>
-        <div className='d-flex justify-content-between'>
-          <Card.Img className='mt-3' variant='top' src={item.img} style={{ width: '6rem', height: '6em' }} />
-          <div className='d-flex flex-column'>
-            {accion != 'Modificar' ? 
-                  item.precio > 7000 ?
-                     <span><Badge bg="secondary">Envio gratis</Badge> </span>
-                        :
-                     <span><Badge bg="primary">LLega mañana</Badge> </span>
-                  : <span></span>}
+      <Card style={{ width: '17rem' }} className='mt-4' key={item.id}>
+          <div className='d-flex mt-1 pe-1 justify-content-end'>
+              {accion != 'Modificar' ? 
+                    item.precio > 7000 ?
+                      <Badge className='mr-1' bg="secondary">Envio gratis</Badge>
+                          :
+                      <Badge className='mr-1' bg="primary">LLega mañana</Badge>
+                    : <span></span>}
           </div>
+        <div className='d-flex'>
+
+            <Card.Img className='mt-2 img_card' variant='top' src={item.img}  />
         </div>
 
         <Card.Body >
@@ -46,9 +48,9 @@ const CardProduct = ({ item, accion }) => {
                 {!item.nuevousado ? <p><mark>Nuevo</mark></p> : <p><mark>Usado</mark></p>}
                 </small></span>
               {accion == 'Modificar' ?
-                <Button className='p-1 m-2 ' variant='outline-primary' size='md' > <Save /> Modificar</Button>
+                <Button className='p-1 m-2 ' variant='outline-secondary' size='md' > {/*<Save />*/} Modificar</Button>
                 : accion == 'Agregar' ?
-                  <Button className='p-1 m-2 ' variant='outline-primary' size='md' > <Save /> Añadir </Button>
+                  <Button className='p-1 m-2 ' variant='outline-success' size='md' > {/*<Save />*/} Añadir </Button>
                   : <span></span>}
             </Col>
           </Row>

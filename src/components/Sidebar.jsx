@@ -5,13 +5,13 @@ const Sidebar = () => {
     return (
         <>
             <aside className="sidebar">
-                <NavLink to="home"><Home />Home</NavLink>
+                <NavLink to="home" className="nav_menu"><Home />Home</NavLink>
                 <hr />
-                <NavLink to="favs"><Star />Favoritos</NavLink>
+                <NavLink to="favs" className="nav_menu"><Star />Favoritos</NavLink>
                 <hr />
-                <NavLink to="mypublications"><BookText />Mis Publicaciones</NavLink>
+                <NavLink to="mypublications" className="nav_menu"><BookText />Mis Publicaciones</NavLink>
                 <hr />
-                <NavLink to="publish"><ArrowUpFromLine />Publicar Producto</NavLink>
+                <NavLink to="publish" className="nav_menu"><ArrowUpFromLine />Publicar Producto</NavLink>
             </aside>
         </>
     )
