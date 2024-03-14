@@ -11,9 +11,7 @@ import Registro from './views/Register'
 import Mypublications from './views/Mypublications'
 import Historial from '../src/views/Historial'
 import MainPage from '../src/components/MainPage'
-import Config from './views/Config'
 import NotFound from "../src/views/NotFound";
-
 import { Routes, Route } from "react-router-dom";
 import ProductProvider from './context/ProductContext'
 
@@ -34,7 +32,6 @@ function App() {
             <Route index element={<ShoppingCart />} />
             <Route index element={<Historial />} />
             <Route index element={<Profile />} />
-            <Route index element={<Config />} />
             <Route path="home" element={<Home />} />
             <Route path="favs" element={<Favs />} />
             <Route path="mypublications" element={<Mypublications />} />
@@ -42,7 +39,6 @@ function App() {
             <Route path="shopping-cart" element={<ShoppingCart />} />
             <Route path="historial" element={<Historial />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="config" element={<Config />} />
           </Route>
    
           <Route path="*" element={<NotFound />}

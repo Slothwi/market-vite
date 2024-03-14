@@ -15,11 +15,9 @@ const getProducts = async (query) => {
 export { getProducts }
 
 
-const getProductsFavs = async (query, token) => {
+const getProductsFavs = async (token) => {
     try {
-        const response = await axios.get(urlBaseServer + 'user/myfavproducts', { params: query },
-            { headers: { Authorization: `Bearer ${token}` } })
-        console.log(response)
+        const response = await axios.get(urlBaseServer + 'user/myfavproducts',  { headers: { Authorization: `Bearer ${token}` } })
         return response.data
     } catch (error) {
         console.error('error getProducts: ', error)

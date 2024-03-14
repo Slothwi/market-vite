@@ -52,7 +52,6 @@ const Access = () => {
             if (response?.status == 200) {
                 window.sessionStorage.setItem('token', response.data.token)
                 window.sessionStorage.setItem('userData', JSON.stringify({
-                    id_usuario: 99,
                     email: response.data.data.email,
                     nombre: response.data.data.nombre,
                     avatar: response.data.data.avatar

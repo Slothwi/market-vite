@@ -4,10 +4,12 @@ import CardProduct from '../components/CardProduct'
 import { Search } from 'lucide-react';
 import { getProducts } from "../services/ProductServices";
 import Carrousel from "../components/Carrousel";
-import HomeEmpty from "../components/HomeEmpty";
 import PaginationPro from "../components/PaginationPro";
 import Loading from "../components/Loading";
+import ScreenEmpty from "../components/ScreenEmpty";
 
+const FIRST_PAGE = 1
+const INITIAL_TOTAL_PAGE = 0
 
 const Home = () => {
 
@@ -15,10 +17,14 @@ const Home = () => {
     const [name, setName] = useState("");
 
     const [show, setShow] = useState(true);
-    const [currentPage, setCurrentPage] = useState(1)
-    const [totalPage,] = useState(2);
+    const [currentPage, setCurrentPage] = useState(FIRST_PAGE)
+    const [totalPage, setTotalPage] = useState(INITIAL_TOTAL_PAGE);
     const [orderByParam, setOrderByParam] = useState('nombre');
     const [isLoading, setisLoading] = useState(false)
+
+    const [textTitle,] = useState('No encontramos coincidencia')
+    const [textMsg,] = useState('¡Intentalo nuevamente! 🙏')
+    const [newSearch,] = useState('/newSearch.jpg')
 
     // Al ingresar patron de busqueda va a consultar
     const buscarProductos = (e) => {
@@ -27,7 +33,9 @@ const Home = () => {
         if (name === '') getProd()
         else {
             const listaFiltrada = arrayProductos.filter(obj => obj.nombre.toLowerCase().includes(name))
+            setCurrentPage(FIRST_PAGE)
             setArrayProductos(listaFiltrada)
+            setTotalPage(listaFiltrada.length)
         }
     }
 
@@ -36,6 +44,7 @@ const Home = () => {
         const query = { order_by: orderByParam, page: currentPage, limits: limitsParam }
         const data = await getProducts(query)
         setArrayProductos(data.results)
+        setTotalPage (Math.ceil(data.total_general / limitsParam) )
     };
 
     const getNextPageProd = async () => {
@@ -56,11 +65,17 @@ const Home = () => {
         })
     };
 
+    const resetOnChange =  (value) => {
+        setCurrentPage(FIRST_PAGE)
+        setOrderByParam(value)        
+    };
+
+   
     useEffect(() => {
         const fetchData = async () => {
-            setisLoading(true) 
+            setisLoading(true)
             await getProd();
-            setisLoading(false) 
+            setisLoading(false)
         }
         fetchData()        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage, orderByParam]);
@@ -99,7 +114,7 @@ const Home = () => {
                     <FloatingLabel controlId="floatingSelect" label="Ordenar por:" size="sm" >
                         <Form.Select
                             aria-label="Floating label"
-                            onChange={e => { setOrderByParam(e.target.value) }}>
+                            onChange={e => { resetOnChange(e.target.value) }}>
                             <option value="nombre">Nombre</option>
                             <option value="precio_lista">Precio</option>
                             <option value="marca_producto">Marca</option>
@@ -115,19 +130,19 @@ const Home = () => {
 
             {/* despliega los productos */}
             <Row className="p-3 ">
-            
-                  {isLoading ?
+
+                {isLoading ?
                     <Loading />
                     :
-                     Array.isArray(arrayProductos) && arrayProductos.length > 0
+                    Array.isArray(arrayProductos) && arrayProductos.length > 0
                         ? arrayProductos.map((item, index) => (
                             <Col key={index} className='ms-2 d-flex justify-content-center'>
                                 <CardProduct item={item} accion="Agregar" />
                             </Col>
                         ))
-                        : <HomeEmpty />
-                        }
-               
+                        : <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg} />
+                }
+
             </Row>
         </Container>
     );

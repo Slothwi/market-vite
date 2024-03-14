@@ -1,72 +1,126 @@
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 const Profile = () => {
+    const navigate = useNavigate()
 
-    const userData = window.sessionStorage.getItem('userData') !== null ?
-    JSON.parse(window.sessionStorage.getItem('userData')) : null
-    const userDataNuevo = userData
-    
-    console.log(userDataNuevo)
+    const [formData, setFormData] = useState({ email: '', newName: '', newImage: '', newPassword: '' });
+    const [errors, setErrors] = useState({})
+
+    const fetchData = () => {
+        const userData = window.sessionStorage.getItem('userData') !== null ?
+            JSON.parse(window.sessionStorage.getItem('userData')) : null
+
+        setFormData({ email: userData.email, newName: userData.nombre, newImage: userData.avatar, newPassword: '' })
+    }
+
+    const handleChange = (field, value) => {
+        setFormData({ ...formData, [field]: value })
+
+        if (errors[field])
+            setErrors({ ...errors, [field]: null })
+    }
+
+    const validateForm = () => {
+        const { newName, newImage, newPassword } = formData
+        const newErrors = {}
+        if (!newName || newName.trim() === '') {
+            newErrors.newName = 'Ingrese Nombre'
+        }
+
+        if (!newImage || newImage.trim() === '') {
+            newErrors.newImage = 'Ingrese url Imagen'
+        }
+
+        if (!newPassword || newPassword.trim() === '') {
+            newErrors.newPassword = 'Ingrese Nueva Password'
+        }
+
+        return newErrors
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formErrors = validateForm()
+        if (Object.keys(formErrors).length > 0) { setErrors(formErrors) }
+        else {
+            console.log('Modificando datos')
+        }
+    };
+
+
+    useEffect(() => {
+        fetchData()        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
             <Container className="access">
                 <h3 className="text-white">Datos Personales</h3>
                 <Form className="text-white mt-3">
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Tu Correo:</Form.Label>
+                        <Form.Control
+                            readOnly
+                            value={formData.email}
+                            type="email"
+                            placeholder="email"
+                        />
+                    </Form.Group>
+                    <hr />
+
                     <Row>
                         <Form.Label> Nombre y apellido:</Form.Label>
                         <Col>
                             <Form.Control
-                                name="nuevoNombre"
-                                value={userDataNuevo.nombre}
-                                placeholder="Nombre"
-                                disabled
-                                 />
+                                name="newName"
+                                value={formData.newName}
+                                onChange={(e) => handleChange('newName', e.target.value)}
+                                type="text"
+                                isInvalid={!!errors.newName}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.newName}
+                            </Form.Control.Feedback>
                         </Col>
                     </Row>
-                    <hr />
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Tu Correo:</Form.Label>
-                        <Form.Control
-                            name="nuevoCorreo"
-                            value={userDataNuevo.email}
-                            type="email"
-                            placeholder="Enter email"
-                            disabled />
-                    </Form.Group>
-                    <hr />
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Tu Contraseña:</Form.Label>
-                        <Form.Control
-                            name="nuevaContraseña"
-                            // value={userData.nuevaContraseña}
-                            type="password"
-                            placeholder="Contraseña"
-                            disabled />
-                    </Form.Group>
-                    <hr />
-                    <Form.Group className="mb-3" controlId="formBasicImg">
+                    <Form.Group className="mb-3 mt-3" controlId="formBasicImg">
                         <Form.Label>Tu Imagen:</Form.Label>
                         <Form.Control
-                            name="nuevaImagen"
-                            value={userDataNuevo.avatar}
-                            type="Img"
-                            placeholder="URL de Imagen"
-                            disabled />
+                            name="newImage"
+                            value={formData.newImage}
+                            onChange={(e) => handleChange('newImage', e.target.value)}
+                            type="text"
+                            isInvalid={!!errors.newImage}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.newImage}
+                        </Form.Control.Feedback>
                     </Form.Group>
+                    <hr />
+
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Modificar Contraseña:</Form.Label>
+                        <Form.Control
+                            name="newPassword"
+                            value={formData.newPassword}
+                            type="password"
+                            onChange={(e) => handleChange('newPassword', e.target.value)}
+                            isInvalid={!!errors.newPassword} />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.newPassword}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <hr />
+
                     <div className="buttons">
-                        <NavLink to="/MainPage/home">
-                            <Button variant="outline-light" type="submit">
-                                Seguir Comprando
-                            </Button>
-                        </NavLink>
-                        <NavLink to="/MainPage/Config">
-                            <Button variant="outline-light" type="submit">
-                                Modificar
-                            </Button>
-                        </NavLink>
+                        <Button variant="outline-light" onClick={() => navigate('/mainpage/home')}>
+                            Seguir Comprando
+                        </Button>
+                        <Button variant="outline-light" onClick={handleSubmit}  >
+                            Modificar Datos
+                        </Button>
                     </div>
                 </Form>
             </Container>

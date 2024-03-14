@@ -3,26 +3,27 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import CardProduct from '../components/CardProduct'
 import { useEffect, useState } from 'react';
 import { getProductsFavs } from "../services/ProductServices";
+import ScreenEmpty from "../components/ScreenEmpty";
 
 
 const Favs = () => {
     const [arrayFavs, setArrayFavs] = useState([]);
 
-    const userData = window.sessionStorage.getItem('userData') !== null ?
-        JSON.parse(window.sessionStorage.getItem('userData')) : null
+    const [textTitle, ] = useState('No tienes productos seleccionados')
+    const [textMsg, ] = useState('¡Intentalo nuevamente! 🤑')
+    const [newSearch, ] = useState('/favoritos.png')
 
     const getProdsFavs = async () => {
         const token = window.sessionStorage.getItem('token')
         if (token) {
-            const email = { email: userData?.email }
-            console.log('query', email)
-            console.log('token', token)
-            const data = await getProductsFavs(email, token)
+            const data = await getProductsFavs(token)
             console.log(data)
             setArrayFavs(data.results)
         }
+        else {
+            console.log('Carga favoritos')
+        }
     };
-
 
     useEffect(() => {
         getProdsFavs();
@@ -30,10 +31,8 @@ const Favs = () => {
     }, []);
 
 
-
     return (
         <Container>
-
             <Row className="p-2">
                 <Card >
                     <Card.Header> <h4> <b> Favoritos </b></h4></Card.Header>
@@ -44,9 +43,9 @@ const Favs = () => {
                                     <CardProduct item={item} accion="Favorito" />
                                 </Col>
                             ))
-                            : <div>No hay datos</div>}
+                            :  <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg} />    
+                            }
                     </Row>
-
                 </Card>
             </Row>
         </Container>
