@@ -26,3 +26,24 @@ const getProductsFavs = async (token) => {
 };
 
 export { getProductsFavs }
+
+const createProduct = async (productData, token) => {
+    try {
+        const response = await axios.post(
+            urlBaseServer + 'products',
+            productData,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
+        );
+        console.log('Producto creado exitosamente:', response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error al crear el producto:', error);
+        throw error;
+    }
+};
+
+export {createProduct}
