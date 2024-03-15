@@ -7,18 +7,20 @@ import Carrousel from '../components/Carrousel';
 
 const Publish = () => {
     const [formData, setFormData] = useState({
-        nombre: '',
-        marca_id: '',
-        descripcion: '',
-        precio_lista: '',
+        title: '',
+        brand: '',
+        description: '',
+        price: '',
         stock: '',
-        usado: ''
+        state: ''
     });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -48,24 +50,24 @@ const Publish = () => {
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicName">
                                 <Form.Label>Nombre del Producto:</Form.Label>
-                                <Form.Control type="text" name="nombre" value={formData.nombre} onChange={handleChange} placeholder="Producto" />
+                                <Form.Control type="text" name="nombre" value={formData.title} onChange={handleChange} placeholder="Producto" />
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicBrand">
                                 <Form.Label>Marca del Producto:</Form.Label>
-                                <Form.Control type="text" name="marca_id" value={formData.marca_id} onChange={handleChange} placeholder="Marca" />
+                                <Form.Control type="text" name="marca_id" value={formData.brand} onChange={handleChange} placeholder="Marca" />
                             </Form.Group>
                         </Col>
                     </Row>
 
                     <Form.Group className="mb-3" controlId="formBasicDescription">
                         <Form.Label>Descripcion del producto:</Form.Label>
-                        <Form.Control as="textarea" rows={3} name="descripcion" value={formData.descripcion} onChange={handleChange} placeholder="Descripcion" />
+                        <Form.Control as="textarea" rows={3} name="descripcion" value={formData.description} onChange={handleChange} placeholder="Descripcion" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPrice">
                         <Form.Label>Precio Del Producto:</Form.Label>
-                        <Form.Control type="text" name="precio_lista" value={formData.precio_lista} onChange={handleChange} placeholder="$$$$$" />
+                        <Form.Control type="text" name="precio_lista" value={formData.price} onChange={handleChange} placeholder="$$$$$" />
                     </Form.Group>
                     <Row>
                         <Col>
@@ -77,10 +79,10 @@ const Publish = () => {
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicBrand">
                                 <Form.Label>Estado:</Form.Label>
-                                <Form.Select aria-label="Status" name="usado" value={formData.usado} onChange={handleChange}>
+                                <Form.Select aria-label="Status" name="usado" value={formData.state} onChange={handleChange}>
                                     <option>Elige el estado</option>
-                                    <option value="1">1</option>
-                                    <option value="0">2</option>
+                                    <option value="1">Usado</option>
+                                    <option value="0">Nuevo</option>
                                 </Form.Select>
                             </Form.Group>
                         </Col>
