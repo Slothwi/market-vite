@@ -1,5 +1,5 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
-import CardProduct from '../components/CardProduct'
+// import CardProduct from '../components/CardProduct'
 import { useEffect, useState } from 'react';
 
 const listPublicaciones = [
@@ -43,7 +43,7 @@ const Mypublications = () => {
                         {arrayPublicaciones.length > 0
                             ? arrayPublicaciones.map((item) => (
                                 <Col key={item.id} className='ms-2'>
-                                    <CardProduct item={item} accion="Modificar"/>
+                                    {/* <CardProduct item={item} accion="Modificar"/> */}
                                 </Col>
                             ))
                             : <div>No hay datos</div>}

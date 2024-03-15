@@ -1,32 +1,56 @@
 
-import { Container, Row, Col, Card } from "react-bootstrap";
-import CardProduct from '../components/CardProduct'
+import { Container, Row, Col } from "react-bootstrap";
+import CardProductFavs from '../components/CardProductFavs'
 import { useEffect, useState } from 'react';
 import { getProductsFavs } from "../services/ProductServices";
 import ScreenEmpty from "../components/ScreenEmpty";
-
+import Loading from "../components/Loading";
+import { deleteProdFavs } from '../services/ProductServices';
 
 const Favs = () => {
     const [arrayFavs, setArrayFavs] = useState([]);
+    const [isLoading, setisLoading] = useState(false)
 
-    const [textTitle, ] = useState('No tienes productos seleccionados')
-    const [textMsg, ] = useState('¡Intentalo nuevamente! 🤑')
-    const [newSearch, ] = useState('/favoritos.png')
+    const [textTitle,] = useState('No tienes productos seleccionados')
+    const [textMsg,] = useState('¡Intentalo nuevamente! 🤑')
+    const [newSearch,] = useState('/favoritos.png')
 
-    const getProdsFavs = async () => {
+    const removeProdFav = async (id) => {
         const token = window.sessionStorage.getItem('token')
         if (token) {
+          const response = await deleteProdFavs(token, id)
+          console.log('respons', response)
+          if (response?.status == 200) {
+            console.log('producto eliminado')
+            await getProdsFavs()
+          }
+          else {
+            console.log('sooooooo  producto no eliminado')
+          }
+        }
+        else { console.log('Error GetProdFavs token invalido') }
+      }
+    
+          
+    const getProdsFavs = async () => {
+        const token = window.sessionStorage.getItem('token')
+
+        if (token) {
             const data = await getProductsFavs(token)
-            console.log(data)
-            setArrayFavs(data.results)
+            setArrayFavs(data.Products)
         }
         else {
-            console.log('Carga favoritos')
+            console.log('Error GetProdFavs token invalido')
         }
     };
 
     useEffect(() => {
-        getProdsFavs();
+        const fetchData = async () => {
+            setisLoading(true)
+            await getProdsFavs()
+            setisLoading(false)
+        }
+        fetchData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -34,21 +58,19 @@ const Favs = () => {
     return (
         <Container>
             <Row className="p-2">
-                <Card >
-                    <Card.Header> <h4> <b> Favoritos </b></h4></Card.Header>
-                    <Row className='mt-2'>
-                        {arrayFavs.length > 0
-                            ? arrayFavs.map((item) => (
-                                <Col key={item.id} className='ms-2'>
-                                    <CardProduct item={item} accion="Favorito" />
-                                </Col>
-                            ))
-                            :  <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg} />    
-                            }
-                    </Row>
-                </Card>
+                {isLoading ?
+                    <Loading />
+                    :
+                    Array.isArray(arrayFavs) && arrayFavs.length > 0
+                        ? arrayFavs.map((item) => (
+                            <Col key={item.id_prod_favorito} className='ms-2'>
+                                <CardProductFavs item={item} removeProdFav={removeProdFav} />
+                            </Col>
+                        ))
+                        : <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg}  />
+                }
             </Row>
-        </Container>
+        </Container >
     );
 };
 

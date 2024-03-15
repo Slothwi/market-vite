@@ -1,12 +1,13 @@
 import { Container, Row, Col, Form, InputGroup, FloatingLabel } from "react-bootstrap";
 import { useEffect, useState } from 'react';
-import CardProduct from '../components/CardProduct'
+import CardProductHome from '../components/CardProductHome'
 import { Search } from 'lucide-react';
 import { getProducts } from "../services/ProductServices";
 import Carrousel from "../components/Carrousel";
 import PaginationPro from "../components/PaginationPro";
 import Loading from "../components/Loading";
 import ScreenEmpty from "../components/ScreenEmpty";
+import { addProdFavs } from '../services/ProductServices';
 
 const FIRST_PAGE = 1
 const INITIAL_TOTAL_PAGE = 0
@@ -38,6 +39,22 @@ const Home = () => {
             setTotalPage(listaFiltrada.length)
         }
     }
+
+    const addProdFav = async (id) => {
+        const token = window.sessionStorage.getItem('token')
+        if (token) {
+    
+          const response = await addProdFavs(token, id)
+          if (response?.status == 201) {
+            console.log('favorito agregado')
+          }
+          else {
+            console.log('favorito no agregado')
+          }
+        }
+        else { console.log('Error GetProdFavs token invalido') }
+      }
+
 
     const getProd = async () => {
         const limitsParam = 4
@@ -137,7 +154,7 @@ const Home = () => {
                     Array.isArray(arrayProductos) && arrayProductos.length > 0
                         ? arrayProductos.map((item, index) => (
                             <Col key={index} className='ms-2 d-flex justify-content-center'>
-                                <CardProduct item={item} accion="Agregar" />
+                                <CardProductHome item={item} addProdFav={addProdFav}  />
                             </Col>
                         ))
                         : <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg} />
