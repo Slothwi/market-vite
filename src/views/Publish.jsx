@@ -50,24 +50,24 @@ const Publish = () => {
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicName">
                                 <Form.Label>Nombre del Producto:</Form.Label>
-                                <Form.Control type="text" name="nombre" value={formData.title} onChange={handleChange} placeholder="Producto" />
+                                <Form.Control type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Producto" />
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicBrand">
                                 <Form.Label>Marca del Producto:</Form.Label>
-                                <Form.Control type="text" name="marca_id" value={formData.brand} onChange={handleChange} placeholder="Marca" />
+                                <Form.Control type="text" name="brand" value={formData.brand} onChange={handleChange} placeholder="Marca" />
                             </Form.Group>
                         </Col>
                     </Row>
 
                     <Form.Group className="mb-3" controlId="formBasicDescription">
                         <Form.Label>Descripcion del producto:</Form.Label>
-                        <Form.Control as="textarea" rows={3} name="descripcion" value={formData.description} onChange={handleChange} placeholder="Descripcion" />
+                        <Form.Control as="textarea" rows={3} name="description" value={formData.description} onChange={handleChange} placeholder="Descripcion" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPrice">
                         <Form.Label>Precio Del Producto:</Form.Label>
-                        <Form.Control type="text" name="precio_lista" value={formData.price} onChange={handleChange} placeholder="$$$$$" />
+                        <Form.Control type="text" name="price" value={formData.price} onChange={handleChange} placeholder="$$$$$" />
                     </Form.Group>
                     <Row>
                         <Col>
@@ -79,7 +79,7 @@ const Publish = () => {
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicBrand">
                                 <Form.Label>Estado:</Form.Label>
-                                <Form.Select aria-label="Status" name="usado" value={formData.state} onChange={handleChange}>
+                                <Form.Select aria-label="Status" name="status" value={formData.state} onChange={handleChange}>
                                     <option>Elige el estado</option>
                                     <option value="1">Usado</option>
                                     <option value="0">Nuevo</option>
