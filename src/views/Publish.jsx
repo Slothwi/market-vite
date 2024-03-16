@@ -19,25 +19,24 @@ const Publish = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-
-    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const accesToken = window.sessionStorage.getItem('token');
+            const accessToken = window.sessionStorage.getItem('token');
 
-
-            if (!accesToken) {
-                console.error('No se ha encontrado un token de acceso en sessionStorage');
+            if (!accessToken) {
+                // Proporcionar retroalimentación al usuario si no hay token
+                alert('No se ha encontrado un token de acceso. Por favor, inicie sesión.');
                 return;
             }
 
-
-            const newProduct = await createProduct(formData, accesToken);
+            const newProduct = await createProduct(formData, accessToken);
             console.log('Producto creado:', newProduct);
         } catch (error) {
+            // Mostrar mensaje de error al usuario si la solicitud falla
             console.error('Error al crear el producto:', error);
+            alert('Se produjo un error al intentar crear el producto. Por favor, inténtelo de nuevo más tarde.');
         }
     };
 
@@ -77,9 +76,9 @@ const Publish = () => {
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group className="mb-3" controlId="formBasicBrand">
+                            <Form.Group className="mb-3" controlId="formBasicState">
                                 <Form.Label>Estado:</Form.Label>
-                                <Form.Select aria-label="Status" name="status" value={formData.state} onChange={handleChange}>
+                                <Form.Select aria-label="Status" name="state" value={formData.state} onChange={handleChange}>
                                     <option>Elige el estado</option>
                                     <option value="1">Usado</option>
                                     <option value="0">Nuevo</option>

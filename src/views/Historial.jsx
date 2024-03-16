@@ -1,27 +1,31 @@
-import { Container } from "react-bootstrap";
-import Accordion from 'react-bootstrap/Accordion';
-
+import React, { useState, useEffect } from 'react';
+import { Container, Accordion } from 'react-bootstrap';
 
 const Historial = () => {
+    const [historial, setHistorial] = useState([]);
+
+    useEffect(() => {
+        fetch('URL_DEL_BACKEND/historial_de_compras')
+            .then(response => response.json())
+            .then(data => setHistorial(data))
+            .catch(error => console.error('Error al obtener historial de compras:', error));
+    }, []);
 
     return (
-    <Container className="cart">
-        <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-                <Accordion.Header>Producto #1</Accordion.Header>
+        <Container className="cart">
+            <Accordion defaultActiveKey="0">
+                {historial.map((compra, index) => (
+                <Accordion.Item key={index} eventKey={index.toString()}>
+                <Accordion.Header>{`Producto #${index + 1}`}</Accordion.Header>
                     <Accordion.Body>
-                        Fecha del Producto Comprado 
+                        Fecha del Producto Comprado: {compra.fecha}
+                        
                     </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-                <Accordion.Header>Producto #2</Accordion.Header>
-                <Accordion.Body>
-                    Fecha del producto comprado
-                </Accordion.Body>
-            </Accordion.Item>
+                </Accordion.Item>
+            ))}
         </Accordion>
     </Container>
-    );
+  );
 };
 
 export default Historial;
