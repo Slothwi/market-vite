@@ -43,12 +43,11 @@ const createProduct = async (productData, token) => {
 
 const deleteProdFavs = async (token, id_prod_favorito) => {
     try {
-        console.log('delete id', id_prod_favorito)
         const response = await axios.delete(urlBaseServer + 'user/myfavsproducts/' + id_prod_favorito, {
             headers: { Authorization: `Bearer ${token}` }
         })
         return response
-      
+
     } catch (error) {
         console.error('error deleteProdFavs: ', error)
         return null
@@ -67,4 +66,16 @@ const addProdFavs = async (token, id) => {
         return null
     }
 };
-export { getProducts, getProductsFavs, deleteProdFavs, addProdFavs, createProduct }
+
+const getAllPosts = async () => {
+    try {
+        const token = window.sessionStorage.getItem('token')
+        const response = await axios.post(urlBaseServer + 'myposts',{}, { headers: { "Authorization": `Bearer ${token}` } })
+        return response.data
+    } catch (error) {
+        console.error('error getAllPosts: ', error)
+        return null
+    }
+};
+
+export { getProducts, getProductsFavs, deleteProdFavs, addProdFavs, createProduct, getAllPosts }

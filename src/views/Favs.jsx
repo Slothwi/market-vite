@@ -18,20 +18,18 @@ const Favs = () => {
     const removeProdFav = async (id) => {
         const token = window.sessionStorage.getItem('token')
         if (token) {
-          const response = await deleteProdFavs(token, id)
-          console.log('respons', response)
-          if (response?.status == 200) {
-            console.log('producto eliminado')
-            await getProdsFavs()
-          }
-          else {
-            console.log('sooooooo  producto no eliminado')
-          }
+            const response = await deleteProdFavs(token, id)
+            if (response?.status == 200) {                
+                await getProdsFavs()
+            }
+            else {
+                console.log('producto no eliminado')
+            }
         }
         else { console.log('Error GetProdFavs token invalido') }
-      }
-    
-          
+    }
+
+
     const getProdsFavs = async () => {
         const token = window.sessionStorage.getItem('token')
 
@@ -58,6 +56,7 @@ const Favs = () => {
     return (
         <Container>
             <Row className="p-2">
+                <h2 >Mis Favoritos</h2>
                 {isLoading ?
                     <Loading />
                     :
@@ -67,7 +66,7 @@ const Favs = () => {
                                 <CardProductFavs item={item} removeProdFav={removeProdFav} />
                             </Col>
                         ))
-                        : <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg}  />
+                        : <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg} />
                 }
             </Row>
         </Container >

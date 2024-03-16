@@ -1,57 +1,51 @@
-import { Container, Row, Col, Card } from "react-bootstrap";
-// import CardProduct from '../components/CardProduct'
+import { Container, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from 'react';
-
-const listPublicaciones = [
-    {
-        id: "1",
-        nombre: "Neumatico",
-        descripcion: "Medida 295/80 R22.5",
-        marca: "Nexen",
-        sku: "302247",
-        precio: 25000,
-        stock: 10,
-        nuevousado: "usado",
-        img: "https://www.ceadechile.cl/images/img/blog/neumaticos-elementos-seguridad.jpg"
-    },
-    {
-        id: "2",
-        nombre: "Alternador",
-        descripcion: "Alternador 3 pines (inyeccion delphi)",
-        marca: "Unipoint",
-        sku: "873766",
-        precio: 80000,
-        stock: 3,
-        nuevousado: "usado",
-        img: "https://www.autofacil.es/wp-content/uploads/2021/05/alternador2.jpg"
-    }
-]
+import { getAllPosts } from "../services/ProductServices";
+import Loading from "../components/Loading";
+import CardProductMyPosts from "../components/CardProductMyPosts";
+import ScreenEmpty from "../components/ScreenEmpty";
 
 const Mypublications = () => {
-    const [arrayPublicaciones, setArrayPublicaciones] = useState([]);
+    const [arrayPosts, setArrayPosts] = useState([]);
+    const [isLoading, setisLoading] = useState(false)
+
+    const [textTitle,] = useState('No tienes productos publicados')
+    const [textMsg,] = useState('¡Publica con nosotros!')
+    const [myPosts,] = useState('/Myposts.jpg')
+
+    const getMyPosts = async () => {
+        const data = await getAllPosts()
+        setArrayPosts(data.myPosts);
+    };
 
     useEffect(() => {
-        setArrayPublicaciones(listPublicaciones);
-    }, []);
+        const fetchData = async () => {
+            setisLoading(true)
+            await getMyPosts();
+            setisLoading(false)
+        }
+        fetchData()
+    }, []); // eslint-disable-next-line react-hooks/exhaustive-deps
 
     return (
-           <Container>
-            <Row className="p-2">
-                <Card >
-                    <Card.Header> <h4> <b>Mis Publicaciones </b></h4></Card.Header>
-                    <Row className='mt-2'>
-                        {arrayPublicaciones.length > 0
-                            ? arrayPublicaciones.map((item) => (
-                                <Col key={item.id} className='ms-2'>
-                                    {/* <CardProduct item={item} accion="Modificar"/> */}
-                                </Col>
-                            ))
-                            : <div>No hay datos</div>}
-                    </Row>
 
-                </Card>
-            </Row>
-        </Container>
+        <Container>
+        <Row className="p-2">
+        <h2>Mis Publicaciones</h2>
+            {isLoading ?
+                <Loading />
+                :
+                Array.isArray(arrayPosts) && arrayPosts.length > 0
+                    ? arrayPosts.map((item) => (
+                        <Col key={item.id_producto} className='ms-2'>
+                            <CardProductMyPosts item={item} />
+                        </Col>
+                    ))
+                    : <ScreenEmpty imageSrc={myPosts} textTitle={textTitle} textMsg={textMsg}  />
+            }
+        </Row>
+    </Container >
+       
     );
 };
 

@@ -21,31 +21,38 @@ const ShoppingList = () => {
                                 <Col lg={2} md={2}>
                                     <Card.Img className='mt-3' variant='top' src={prod.imagen} style={{ width: '6rem', height: '6em' }} />
                                 </Col>
+
                                 <Col lg={3} md={3} className='d-flex flex-column justify-content-between'>
                                     <div> <span className='d-flex flex-column text-capitalize'> <b>{prod.nombre} </b>  </span>
                                         <small>{prod.marca}</small>
                                     </div>
-                                    <div> {prod.precio > 10000 ?
-                                        <span><Badge bg="secondary">Envio gratis</Badge> </span>
-                                        :
-                                        <span><Badge bg="primary">LLega mañana</Badge> </span>
-                                    }</div>
+                                    <p> {prod.descripcion}</p>
                                 </Col>
+
                                 <Col lg={2} md={2} className='text-center'>
-                                    <b> $ {(prod.precio * prod.cantidad).toLocaleString()} </b>
+                                    <h5 className="text-primary"> <b> $ {(prod.precio * prod.cantidad).toLocaleString()} </b></h5>
                                 </Col>
-                                <Col lg={5} md={5} className='text-center' >
+
+                                <Col lg={3} md={3} className='text-center' >
                                     <OverlayTrigger
                                         placement="top"
                                         overlay={<Tooltip> Remover </Tooltip>} >
-                                        <Button variant='outline-primary' size='sm' onClick={() => removeProductShopping(prod)}><MinusCircle /> </Button>
+                                        <Button variant='outline-primary border-0'   onClick={() => removeProductShopping(prod)}><MinusCircle /> </Button>
                                     </OverlayTrigger>
                                     <b> {prod.cantidad} </b>
                                     <OverlayTrigger
                                         placement="top"
                                         overlay={<Tooltip> Añadir </Tooltip>} >
-                                        <Button className='ms-2' variant='outline-primary' size='sm' onClick={() => addProductShopping(prod)}> <PlusCircle /> </Button>
+                                        <Button className='ms-2' variant='outline-primary border-0'   onClick={() => addProductShopping(prod)}> <PlusCircle /> </Button>
                                     </OverlayTrigger>
+                                </Col>
+                                
+                                <Col lg={2} md={2} className="d-flex align-items-end justify-content-end">
+                                    {prod.precio > 7000 ?
+                                        <span><Badge bg="secondary">Envio gratis</Badge> </span>
+                                        :
+                                        <span><Badge bg="primary">LLega mañana</Badge> </span>
+                                    }
                                 </Col>
                             </Row>
                         </Card>

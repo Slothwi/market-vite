@@ -11,7 +11,7 @@ const ShoppingSumary = () => {
 
     const navigate = useNavigate()
     const notify = () => {
-        toast.success('Orden pagada!', { position: toast.POSITION.TOP_CENTER })
+        toast.success('Compra exitosa! ', { position: toast.POSITION.TOP_CENTER })
     }
 
     return (
@@ -31,7 +31,7 @@ const ShoppingSumary = () => {
                             </div >
                             <div className="d-flex flex-row justify-content-between">
                                 <b>Total: </b>
-                                <h5>$ {calculateAmount().toLocaleString()} </h5>
+                                <h4 className="text-success">$ {calculateAmount().toLocaleString()} </h4>
                             </div>
                         </Card>
                     </Col>

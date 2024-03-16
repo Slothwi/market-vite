@@ -1,9 +1,22 @@
 import { Card, Button, Row, Col, Badge } from 'react-bootstrap'
 import '../assets/css/CardProduct.css';
 import IconHeart from './IconHeart';
+import { ProductContext } from "../context/ProductContext";
+import { useContext } from 'react';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 const CardProductHome = ({ item, addProdFav }) => {
+  const { addProductShopping} = useContext(ProductContext)
+
+  const addProdShopping = (item) => {
+    const detailProd = {id: item.id_producto, nombre: item.nombre, marca: item.marca, descripcion: item.descripcion,precio: item.precio, 
+      imagen:item.imagen}
+    addProductShopping(detailProd)
+    toast.info('Producto agregado al carrito', { position: toast.POSITION.TOP_CENTER })
+  }
+
 
   return (
     <div>
@@ -22,7 +35,7 @@ const CardProductHome = ({ item, addProdFav }) => {
         <Card.Body >
           <Card.Title className='m-0 text-capitalize text-center d-flex justify-content-between'>
             <b>{item.nombre} </b>
-            <div key={item.id} onClick={() => addProdFav(item.id)}>
+            <div key={item.id_producto} onClick={() => addProdFav(item.id_producto)}>
               <IconHeart filled={false} ></IconHeart>
             </div>
 
@@ -45,9 +58,10 @@ const CardProductHome = ({ item, addProdFav }) => {
               <span><small>
                 {!item.nuevousado ? <p><mark>Nuevo</mark></p> : <p><mark>Usado</mark></p>}
               </small></span>
-              <Button className='p-1 m-2 ' variant='outline-success' size='md' > Añadir </Button>
+              <Button className='p-1 m-2 ' variant='outline-success' size='md' onClick={() => addProdShopping(item)}> Añadir Carrito </Button>
             </Col>
           </Row>
+          <ToastContainer autoClose={500} />
         </Card.Body>
       </Card>
 

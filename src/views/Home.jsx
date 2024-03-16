@@ -8,12 +8,12 @@ import PaginationPro from "../components/PaginationPro";
 import Loading from "../components/Loading";
 import ScreenEmpty from "../components/ScreenEmpty";
 import { addProdFavs } from '../services/ProductServices';
+import SweetAlert2 from 'react-sweetalert2'
 
 const FIRST_PAGE = 1
 const INITIAL_TOTAL_PAGE = 0
 
 const Home = () => {
-
     const [arrayProductos, setArrayProductos] = useState([]);
     const [name, setName] = useState("");
 
@@ -22,6 +22,8 @@ const Home = () => {
     const [totalPage, setTotalPage] = useState(INITIAL_TOTAL_PAGE);
     const [orderByParam, setOrderByParam] = useState('nombre');
     const [isLoading, setisLoading] = useState(false)
+
+    const [swalProps, setSwalProps] = useState({});
 
     const [textTitle,] = useState('No encontramos coincidencia')
     const [textMsg,] = useState('¡Intentalo nuevamente! 🙏')
@@ -41,19 +43,19 @@ const Home = () => {
     }
 
     const addProdFav = async (id) => {
+        setSwalProps({})
         const token = window.sessionStorage.getItem('token')
         if (token) {
-    
-          const response = await addProdFavs(token, id)
-          if (response?.status == 201) {
-            console.log('favorito agregado')
-          }
-          else {
-            console.log('favorito no agregado')
-          }
+            const response = await addProdFavs(token, id)
+            if (response) {
+                setSwalProps({ show: true, title: 'Informacion', text: 'Producto incorporado a Favoritos', icon: 'success'})
+            }
+            else {
+                setSwalProps({ show: true, title: 'Informacion', text: 'Producto no incorporado a Favoritos', icon: 'error'})
+            }
         }
         else { console.log('Error GetProdFavs token invalido') }
-      }
+    }
 
 
     const getProd = async () => {
@@ -61,7 +63,7 @@ const Home = () => {
         const query = { order_by: orderByParam, page: currentPage, limits: limitsParam }
         const data = await getProducts(query)
         setArrayProductos(data.results)
-        setTotalPage (Math.ceil(data.total_general / limitsParam) )
+        setTotalPage(Math.ceil(data.total_general / limitsParam))
     };
 
     const getNextPageProd = async () => {
@@ -82,12 +84,12 @@ const Home = () => {
         })
     };
 
-    const resetOnChange =  (value) => {
+    const resetOnChange = (value) => {
         setCurrentPage(FIRST_PAGE)
-        setOrderByParam(value)        
+        setOrderByParam(value)
     };
 
-   
+
     useEffect(() => {
         const fetchData = async () => {
             setisLoading(true)
@@ -154,12 +156,12 @@ const Home = () => {
                     Array.isArray(arrayProductos) && arrayProductos.length > 0
                         ? arrayProductos.map((item, index) => (
                             <Col key={index} className='ms-2 d-flex justify-content-center'>
-                                <CardProductHome item={item} addProdFav={addProdFav}  />
+                                <CardProductHome item={item} addProdFav={addProdFav} />
                             </Col>
                         ))
                         : <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg} />
                 }
-
+                <SweetAlert2 {...swalProps} />
             </Row>
         </Container>
     );
