@@ -29,7 +29,7 @@ const CardProductHome = ({ item, addProdFav }) => {
           }
         </div>
         <div className='d-flex'>
-          <Card.Img className='mt-2 img_card' variant='top' src={item.img} />
+          <Card.Img className='mt-2 img_card' variant='top' src={item.imagen} />
         </div>
 
         <Card.Body >

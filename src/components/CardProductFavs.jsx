@@ -7,7 +7,7 @@ const CardProductFavs = ({ item, removeProdFav }) => {
 
   return (
     <div>
-      <Card style={{ width: '17rem' }} className='mt-4' key={item.id_prod_favorito}>          :
+      <Card style={{ width: '17rem' }} className='mt-4' key={item.id_prod_favorito}>          
 
         <div className='d-flex mt-1 pe-1 justify-content-end'>
         {item.precio > 7000 ?
@@ -18,7 +18,7 @@ const CardProductFavs = ({ item, removeProdFav }) => {
         </div>
         <div className='d-flex'>
 
-          <Card.Img className='mt-2 img_card' variant='top' src={item.img} />
+          <Card.Img className='mt-2 img_card' variant='top' src={item.imagen_url} />
         </div>
 
         <Card.Body >

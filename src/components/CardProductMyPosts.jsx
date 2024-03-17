@@ -1,4 +1,4 @@
-import { Card, Row, Col, Badge } from 'react-bootstrap'
+import { Card, Row, Col } from 'react-bootstrap'
 import '../assets/css/CardProduct.css';
 
 const CardProductMyPosts = ({ item }) => {
@@ -6,16 +6,10 @@ const CardProductMyPosts = ({ item }) => {
   return (
     <div>
       <Card style={{ width: '17rem' }} className='mt-4' key={item.id}>
-        <div className='d-flex mt-1 pe-1 justify-content-end'>
-          {item.precio_lista > 7000 ?
-              <Badge className='mr-1' bg="secondary">Envio gratis</Badge>
-              :
-              <Badge className='mr-1' bg="primary">LLega mañana</Badge>
-          }
+     
+        <div className='d-flex'>
+          <Card.Img className='mt-2 img_card' variant='top' src={item.imagen_url} />
         </div>
-        {/* <div className='d-flex'>
-          <Card.Img className='mt-2 img_card' variant='top' src={item.img} />
-        </div> */}
 
         <Card.Body >
           <Card.Title className='m-0 text-capitalize text-center d-flex justify-content-between'>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Accordion } from 'react-bootstrap';
 import { getOrders } from '../services/OrderServices';
 
@@ -21,8 +21,6 @@ const Historial = () => {
 
         fetchData();
     }, []);
-
-    console.log('Historial:', historial);
 
     return (
         <Container className="cart">
