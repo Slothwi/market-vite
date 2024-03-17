@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Accordion } from 'react-bootstrap';
-import { getOrders } from '../services/ProductServices';
+import { getOrders } from '../services/OrderServices';
 
 const Historial = () => {
     const [historial, setHistorial] = useState([]);
@@ -9,7 +9,8 @@ const Historial = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const orders = await getOrders();
+                const response = await getOrders();
+                const orders = response.orders; // Acceder a la propiedad "orders" en la respuesta
                 setHistorial(orders);
                 setLoading(false);
             } catch (error) {
@@ -19,8 +20,9 @@ const Historial = () => {
         };
 
         fetchData();
-
     }, []);
+
+    console.log('Historial:', historial);
 
     return (
         <Container className="cart">
@@ -29,19 +31,19 @@ const Historial = () => {
             ) : (
                 <Accordion defaultActiveKey="0">
                     {historial && historial.length > 0 ? (
-                        historial.map((product, index) => (
+                        historial.map((pedido, index) => (
                             <Accordion.Item key={index} eventKey={index.toString()}>
                                 <Accordion.Header>
-                                    {`Producto #${index + 1} - Creado el ${product.created_at}`}
+                                    {`Pedido #${index + 1} - Creado el ${new Date(pedido.created_at).toLocaleString()}`}
                                 </Accordion.Header>
                                 <Accordion.Body>
-                                    <div>Numero Pedido: {product.numero_pedido}</div>
-                                    <div>Estado: {product.estado}</div>
+                                    <div>Número de Pedido: {pedido.numero_pedido}</div>
+                                    <div>Estado: {pedido.estado}</div>
                                 </Accordion.Body>
                             </Accordion.Item>
                         ))
                     ) : (
-                        <div>No se encontraron productos en el historial.</div>
+                        <div>No se encontraron pedidos en el historial.</div>
                     )}
                 </Accordion>
             )}
@@ -50,8 +52,3 @@ const Historial = () => {
 };
 
 export default Historial;
-
-
-
-
-

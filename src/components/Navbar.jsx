@@ -36,7 +36,7 @@ const Navigation = () => {
                     <NavDropdown align="end" title={
                         <span className="text-white"> {userData?.nombre} <CircleUser /></span>} >
                         <Dropdown.Item as={NavLink} to="/MainPage/Mypublications"><BookText />  Mis Publicaciones</Dropdown.Item>
-                        <Dropdown.Item as={NavLink} to="/MainPage/Historial"><History /> Historial De Publicaciones</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} to="/MainPage/Historial"><History /> Historial De Pedidos</Dropdown.Item>
                         <Dropdown.Item as={NavLink} to="/MainPage/Publish"><ArrowUpFromLine /> Publicar Articulo</Dropdown.Item>
                         <NavDropdown.Divider />
                         <Dropdown.Item as={NavLink} to="/MainPage/Profile"><SquareUser /> Mi Perfil</Dropdown.Item>
