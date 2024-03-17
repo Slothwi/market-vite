@@ -78,7 +78,8 @@ const getAllPosts = async () => {
     }
 };
 
-const getPostsByUser = async () => {
+
+const getOrders = async () => {
     try {
         const token = window.sessionStorage.getItem('token');
 
@@ -86,7 +87,7 @@ const getPostsByUser = async () => {
             throw new Error('Token de autenticación no encontrado en sessionStorage');
         }
 
-        const response = await axios.post(urlBaseServer + 'myposts', {}, {
+        const response = await axios.post(urlBaseServer + 'user/orders', {}, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -94,9 +95,9 @@ const getPostsByUser = async () => {
 
         return response.data;
     } catch (error) {
-        console.error('Error al obtener los posts del usuario:', error);
+        console.error('Error al obtener los pedidos del usuario:', error);
         throw error;
     }
 };
 
-export { getProducts, getProductsFavs, deleteProdFavs, addProdFavs, createProduct, getAllPosts, getPostsByUser }
+export { getProducts, getProductsFavs, deleteProdFavs, addProdFavs, createProduct, getAllPosts, getOrders}
