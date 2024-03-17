@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Container, Accordion } from 'react-bootstrap';
 import { getOrders } from '../services/OrderServices';
+import ScreenEmpty from '../components/ScreenEmpty';
+import Loading from '../components/Loading';
 
 const Historial = () => {
     const [historial, setHistorial] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const [textTitle,] = useState('No se encontraron pedidos en el historial')
+    const [textMsg,] = useState('¡Compra con nosotros!')
+    const [myPosts,] = useState('/historial.jpg')
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,7 +31,7 @@ const Historial = () => {
     return (
         <Container className="cart">
             {loading ? (
-                <div>Cargando...</div>
+               <Loading/>
             ) : (
                 <Accordion defaultActiveKey="0">
                     {historial && historial.length > 0 ? (
@@ -40,9 +46,7 @@ const Historial = () => {
                                 </Accordion.Body>
                             </Accordion.Item>
                         ))
-                    ) : (
-                        <div>No se encontraron pedidos en el historial.</div>
-                    )}
+                    )  : <ScreenEmpty imageSrc={myPosts} textTitle={textTitle} textMsg={textMsg}  />}
                 </Accordion>
             )}
         </Container>
