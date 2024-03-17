@@ -48,10 +48,10 @@ const Home = () => {
         if (token) {
             const response = await addProdFavs(token, id)
             if (response) {
-                setSwalProps({ show: true, title: 'Informacion', text: 'Producto incorporado a Favoritos', icon: 'success'})
+                setSwalProps({ show: true, title: 'Informacion', text: 'Producto incorporado a Favoritos', icon: 'success' })
             }
             else {
-                setSwalProps({ show: true, title: 'Informacion', text: 'Producto no incorporado a Favoritos', icon: 'error'})
+                setSwalProps({ show: true, title: 'Informacion', text: 'Producto no incorporado a Favoritos', icon: 'error' })
             }
         }
         else { console.log('Error GetProdFavs token invalido') }
@@ -140,11 +140,7 @@ const Home = () => {
                         </Form.Select>
                     </FloatingLabel>
                 </Col>
-                <Col lg={3}></Col>
-                <Col lg={4} md={4} sm={4}>
-                    <PaginationPro getNextPageProd={getNextPageProd} getPreviousPageProd={getPreviousPageProd} currentPage={currentPage} />
-                </Col>
-
+                <Col lg={4}></Col>
             </Row>
 
             {/* despliega los productos */}
@@ -162,6 +158,11 @@ const Home = () => {
                         : <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg} />
                 }
                 <SweetAlert2 {...swalProps} />
+            </Row>
+            <Row className= "mt-3">
+                <Col className= "d-flex justify-content-center">
+                    <PaginationPro getNextPageProd={getNextPageProd} getPreviousPageProd={getPreviousPageProd} currentPage={currentPage} />
+                </Col>
             </Row>
         </Container>
     );
