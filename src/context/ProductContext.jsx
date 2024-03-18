@@ -1,45 +1,34 @@
-import { createContext, useState } from 'react'
- 
+import { createContext, useEffect, useState } from 'react'
+import { getDetailOrderShopping } from '../services/OrderServices';
+
 export const ProductContext = createContext()
-// const initialForm = { id: '', nombre: '', marca: '', descripcion: '', precio: '', imagen: '', cantidad:'' }
 
 const ProductProvider = ({ children }) => {
-  const [listShoppingCart, setListShoppingCart] = useState([])
+  const [arrayShoppingCart, setArrayShoppingCart] = useState([]);
 
-  const addProductShopping = (prod) => {
-    
-    const indexProd = listShoppingCart.findIndex(item => item.id === prod.id)
-    if (indexProd < 0) {
-      setListShoppingCart([...listShoppingCart, { id: prod.id, nombre: prod.nombre, marca: prod.marca, descripcion: prod.descripcion,
-        precio: prod.precio, cantidad: 1 }])
-    } else {
-      listShoppingCart[indexProd].cantidad = listShoppingCart[indexProd].cantidad + 1
-      setListShoppingCart([...listShoppingCart])
-    }
-  }
-
-  const removeProductShopping = (prod) => {
-    const indexProd = listShoppingCart.findIndex(item => item.id === prod.id)
-    if (listShoppingCart[indexProd].cantidad === 1) {
-      setListShoppingCart(listShoppingCart.filter(item => item.id !== prod.id))
-    } else {
-      listShoppingCart[indexProd].cantidad = listShoppingCart[indexProd].cantidad - 1
-      setListShoppingCart([...listShoppingCart])
-    }
-  }
+  const getProdShop = async () => {
+    const data = await getDetailOrderShopping()
+    setArrayShoppingCart(data.detalle)
+   };
 
   const calculateAmount = () => {
-    const total = (listShoppingCart.reduce((accumulator, prod) => accumulator + prod.precio * prod.cantidad, 0))
-    return total.toLocaleString()
+    if (Array.isArray(arrayShoppingCart) && arrayShoppingCart.length > 0)
+    { const total = (arrayShoppingCart.reduce((accumulator, prod) => accumulator + prod.neto * prod.cantidad, 0))
+      return total.toLocaleString() }
   }
 
   const quantityProduct = () => {
-    const count = (listShoppingCart.reduce((accumulator, prod) => accumulator + prod.cantidad, 0))
-    return count 
+    if (Array.isArray(arrayShoppingCart) && arrayShoppingCart.length > 0)
+       {  const count = (arrayShoppingCart.reduce((accumulator, prod) => accumulator + prod.cantidad, 0))
+         return count }
   }
 
+  useEffect(() => {
+   setArrayShoppingCart([])
+}, []);
+
   return (
-    <ProductContext.Provider value={{ listShoppingCart, setListShoppingCart, addProductShopping, removeProductShopping, calculateAmount, quantityProduct }}>
+    <ProductContext.Provider value={{ arrayShoppingCart, setArrayShoppingCart, calculateAmount, quantityProduct, getProdShop }}>
       {children}
     </ProductContext.Provider>
   )

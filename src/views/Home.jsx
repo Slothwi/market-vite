@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form, InputGroup, FloatingLabel } from "react-bootstrap";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CardProductHome from '../components/CardProductHome'
 import { Search } from 'lucide-react';
 import { getProducts } from "../services/ProductServices";
@@ -9,11 +9,15 @@ import Loading from "../components/Loading";
 import ScreenEmpty from "../components/ScreenEmpty";
 import { addProdFavs } from '../services/ProductServices';
 import SweetAlert2 from 'react-sweetalert2'
+import { orderShopping } from "../services/OrderServices";
+import { ProductContext } from "../context/ProductContext";
 
 const FIRST_PAGE = 1
 const INITIAL_TOTAL_PAGE = 0
 
 const Home = () => {
+    const { getProdShop } = useContext(ProductContext)
+
     const [arrayProductos, setArrayProductos] = useState([]);
     const [name, setName] = useState("");
 
@@ -41,6 +45,20 @@ const Home = () => {
             setTotalPage(listaFiltrada.length)
         }
     }
+
+    const addProdShopping = async (item) => {
+        setSwalProps({})
+        const response = await orderShopping(item)
+        if (response) {
+            setSwalProps({ show: true, title: 'Informacion', text: 'Producto incorporado al carrito', icon: 'success' })
+            await getProdShop()
+             }
+        else {
+            setSwalProps({ show: true, title: 'Informacion', text: 'Producto no incorporado al carrito', icon: 'error' })
+        }
+       
+    }
+
 
     const addProdFav = async (id) => {
         setSwalProps({})
@@ -152,15 +170,15 @@ const Home = () => {
                     Array.isArray(arrayProductos) && arrayProductos.length > 0
                         ? arrayProductos.map((item, index) => (
                             <Col key={index} className='ms-2 d-flex justify-content-center'>
-                                <CardProductHome item={item} addProdFav={addProdFav} />
+                                <CardProductHome item={item} addProdFav={addProdFav} addProdShopping={addProdShopping} />
                             </Col>
                         ))
                         : <ScreenEmpty imageSrc={newSearch} textTitle={textTitle} textMsg={textMsg} />
                 }
                 <SweetAlert2 {...swalProps} />
             </Row>
-            <Row className= "mt-3">
-                <Col className= "d-flex justify-content-center">
+            <Row className="mt-3">
+                <Col className="d-flex justify-content-center">
                     <PaginationPro getNextPageProd={getNextPageProd} getPreviousPageProd={getPreviousPageProd} currentPage={currentPage} />
                 </Col>
             </Row>

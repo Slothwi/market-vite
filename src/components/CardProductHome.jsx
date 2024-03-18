@@ -1,22 +1,8 @@
 import { Card, Button, Row, Col, Badge } from 'react-bootstrap'
 import '../assets/css/CardProduct.css';
 import IconHeart from './IconHeart';
-import { ProductContext } from "../context/ProductContext";
-import { useContext } from 'react';
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
-
-const CardProductHome = ({ item, addProdFav }) => {
-  const { addProductShopping} = useContext(ProductContext)
-
-  const addProdShopping = (item) => {
-    const detailProd = {id: item.id_producto, nombre: item.nombre, marca: item.marca, descripcion: item.descripcion,precio: item.precio, 
-      imagen:item.imagen}
-    addProductShopping(detailProd)
-    toast.info('Producto agregado al carrito', { position: toast.POSITION.TOP_CENTER })
-  }
-
+ 
+const CardProductHome = ({ item, addProdFav, addProdShopping }) => {
 
   return (
     <div>
@@ -60,8 +46,7 @@ const CardProductHome = ({ item, addProdFav }) => {
               </small></span>
               <Button className='p-1 m-2 ' variant='outline-success' size='md' onClick={() => addProdShopping(item)}> Añadir Carrito </Button>
             </Col>
-          </Row>
-          <ToastContainer autoClose={500} />
+          </Row>         
         </Card.Body>
       </Card>
 

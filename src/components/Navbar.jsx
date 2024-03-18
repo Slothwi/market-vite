@@ -17,6 +17,7 @@ const Navigation = () => {
     const closeSession = () =>{
         window.sessionStorage.removeItem('token')
         window.sessionStorage.removeItem('userData')
+        window.sessionStorage.removeItem('nroPedido')
         navigate('/')
     }
 
