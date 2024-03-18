@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { createProduct } from "../services/ProductServices";
 import Accept from "../components/Drag";
 import Carrousel from "../components/Carrousel";
+import swal from 'sweetalert2'
 
 const Publish = () => {
   const [formData, setFormData] = useState({
@@ -36,6 +37,11 @@ const Publish = () => {
 
       const newProduct = await createProduct(formData, accessToken);
       console.log("Producto creado:", newProduct);
+    
+    
+      swal.fire('¡Producto Creado Exitosamente!', '', 'success');
+    
+    
     } catch (error) {
       // Mostrar mensaje de error al usuario si la solicitud falla
       console.error("Error al crear el producto:", error);
